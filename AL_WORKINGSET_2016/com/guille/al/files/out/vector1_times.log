@@ -10,3 +10,5 @@ SIZE = 1250 ** TIME SUM= 1390ms ** TIME FILL IN= 2325ms ** TIME MAX= 1016ms  ** 
 SIZE = 6250 ** TIME SUM= 6729ms ** TIME FILL IN= 13197ms ** TIME MAX= 4557ms  ** nTimes = 1
 **** LOG CREATED 04 - feb - 2016 at 19:35:31 ****
 SIZE = 31250 ** TIME SUM= 33771ms ** TIME FILL IN= 66497ms ** TIME MAX= 23577ms  ** nTimes = 1
+**** LOG CREATED 04 - feb - 2016 at 19:44:51 ****
+SIZE = 156250 ** TIME SUM= 167351ms ** TIME FILL IN= 331249ms ** TIME MAX= 118708ms  ** nTimes = 1
