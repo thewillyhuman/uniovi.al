@@ -12,9 +12,10 @@ public class TimeCalculator {
     final static int LOOP_3_FACTOR = 1000;
     final static int LOOP_4_FACTOR = 100;
     final static int LOOP_5_FACTOR = 100;
-    final static int LOOP_UNKNOWN = 1000;
+    final static int LOOP_UNKNOWN =  1000;
     static final String PATH = "com/guille/al/files/out/";
-    static final String FILE_NAME = "vector5-4_times";
+    static final String FILE_NAME = "ALL_times";
+    static final String COLUM_SEPARATOR = ",";
 
     /**
      * 
@@ -25,7 +26,7 @@ public class TimeCalculator {
 	StringBuilder toFile = new StringBuilder();
 	long t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, totalLoop1 = 0, totalLoop2 = 0, totalLoop3 = 0, totalLoop4 = 0, totalLoop5 = 0, totalLoopUnk = 0;
 
-	toFile.append("N SIZE; LOOP 1; LOOP 2; LOOP 3; LOOP 4; LOOP 5; UNKNOWN");
+	toFile.append("N SIZE" + COLUM_SEPARATOR + " LOOP 1" + COLUM_SEPARATOR +  "LOOP 2" + COLUM_SEPARATOR +  "LOOP 3" + COLUM_SEPARATOR + "LOOP 4" + COLUM_SEPARATOR + "LOOP 5" + COLUM_SEPARATOR + "UNKNOWN\n");
 	// Sample repetition
 	for (int n = 10; n <= 100; n += 1) {
 	    for (int repeticion = 0; repeticion <= nTimes * LOOP_1_FACTOR; repeticion++) {
@@ -73,11 +74,12 @@ public class TimeCalculator {
 		Unknown.unknown(n);
 		t12 = System.currentTimeMillis();
 
-		totalLoop5 += (t12 - t11);
+		totalLoopUnk += (t12 - t11);
 	    }
 	    
 	    System.out.println((((float)n/100.0) * 100)+ "% COMPLETED...");
-	    toFile.append(n + ";" + ((float)totalLoop1/LOOP_1_FACTOR) + ";" + ((float)totalLoop2/LOOP_2_FACTOR) + ";" + ((float)totalLoop3/LOOP_3_FACTOR) + ";" + ((float)totalLoop4/LOOP_4_FACTOR) + ";" + ((float)totalLoop5/LOOP_5_FACTOR) + ";" + ((float)totalLoopUnk/LOOP_UNKNOWN) + "\n");
+	    
+	    toFile.append(n + ";" + ((float)totalLoop1/LOOP_1_FACTOR) + COLUM_SEPARATOR + ((float)totalLoop2/LOOP_2_FACTOR) + COLUM_SEPARATOR + ((float)totalLoop3/LOOP_3_FACTOR) + COLUM_SEPARATOR + ((float)totalLoop4/LOOP_4_FACTOR) + COLUM_SEPARATOR + ((float)totalLoop5/LOOP_5_FACTOR) + COLUM_SEPARATOR + ((float)totalLoopUnk/LOOP_UNKNOWN) + "\n");
 	}
 	try {
 	    Files.writeFileFromString(PATH, FILE_NAME, toFile.toString(), ".csv", Files.UTF_8);
