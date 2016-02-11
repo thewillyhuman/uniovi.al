@@ -10,6 +10,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class Files {
+    
+    public static final String UTF_8 = "UTF-8";
 
     /**
      * Writes a file with the provided parameters.
@@ -24,11 +26,8 @@ public class Files {
      * @throws UnsupportedEncodingException if the exception provided is not
      *             correct/supported.
      */
-    public static void writeFileFromString(String path, String fileName,
-	    String file, String extension, String encoding)
-	    throws FileNotFoundException, UnsupportedEncodingException {
-	PrintWriter writer = new PrintWriter(path + fileName + "." + extension,
-		encoding);
+    public static void writeFileFromString(String path, String fileName, String file, String extension, String encoding) throws FileNotFoundException, UnsupportedEncodingException {
+	PrintWriter writer = new PrintWriter(path + fileName + "." + extension, encoding);
 	writer.println(file);
 	writer.close();
     }
@@ -43,39 +42,12 @@ public class Files {
     public static PrintWriter createLogger(String path, String filename) {
 	PrintWriter log = null;
 	try {
-	    log = new PrintWriter(new BufferedWriter(new FileWriter(path
-		    + filename + ".log", true)));
+	    log = new PrintWriter(new BufferedWriter(new FileWriter(path + filename + ".log", true)));
 	} catch (IOException e) {
 	    e.printStackTrace();
 	}
-	SimpleDateFormat sdf = new SimpleDateFormat(
-		"dd - MMM - YYYY 'at' HH:mm:ss");
-	log.println("**** LOG CREATED "
-		+ sdf.format(Calendar.getInstance().getTime()) + " ****");
-	log.close();
-	return log;
-    }
-    
-    /**
-     * Creates a file in the path given with the name given and .log extension.
-     * 
-     * @param path for the log.
-     * @param filename to the log.
-     * @return a PrintWriter object to print on.
-     */
-    public static PrintWriter writeFileAndAppend(String path, String filename, String mess) {
-	PrintWriter log = null;
-	try {
-	    log = new PrintWriter(new BufferedWriter(new FileWriter(path
-		    + filename + ".log", true)));
-	} catch (IOException e) {
-	    e.printStackTrace();
-	}
-	SimpleDateFormat sdf = new SimpleDateFormat(
-		"dd - MMM - YYYY 'at' HH:mm:ss");
-	log.println("**** LOG CREATED "
-		+ sdf.format(Calendar.getInstance().getTime()) + " ****");
-	log.println(mess);
+	SimpleDateFormat sdf = new SimpleDateFormat("dd - MMM - YYYY 'at' HH:mm:ss");
+	log.println("**** LOG CREATED " + sdf.format(Calendar.getInstance().getTime()) + " ****");
 	log.close();
 	return log;
     }
@@ -87,7 +59,13 @@ public class Files {
      * @param file to append.
      * @param message to write at the end of the file.
      */
-    public static void writeLog(PrintWriter file, String message) {
+    public static void writeLog(String path, String filename, String message) {
+	PrintWriter file = null;
+	try {
+	    file = new PrintWriter(new BufferedWriter(new FileWriter(path + filename + ".log", true)));
+	} catch (IOException e) {
+	    e.printStackTrace();
+	}
 	SimpleDateFormat sdf = new SimpleDateFormat("dd - MMM - YYYY  HH:mm:ss");
 	file.print(sdf.format(Calendar.getInstance().getTime()) + " :: \t");
 	file.println(message);
