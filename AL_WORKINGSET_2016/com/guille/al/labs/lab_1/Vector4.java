@@ -29,7 +29,7 @@ public class Vector4 {
 	int sum = 0;
 	StringBuilder toFile = new StringBuilder();
 	
-	toFile.append("N SIZE" + COLUM_SEPARATOR + "SUM" + COLUM_SEPARATOR + "FILL IN" + COLUM_SEPARATOR + "MAX");
+	toFile.append("N SIZE" + COLUM_SEPARATOR + "SUM" + COLUM_SEPARATOR + "FILL IN" + COLUM_SEPARATOR + "MAX"+ "\n");
 	
 	for (int n = 10; n <= 2000; n += 5) { // n is increased *5
 	    v = new int[n];
