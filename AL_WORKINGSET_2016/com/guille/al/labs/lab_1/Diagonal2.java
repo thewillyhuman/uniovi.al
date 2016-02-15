@@ -19,6 +19,7 @@ public class Diagonal2 {
     static final int SUM_2_FACTOR = 1000000;
     static final String PATH = "com/guille/al/files/out/";
     static final String FILE_NAME = "diagonal1_times";
+    static final String COLUM_SEPARATOR = ",";
     
     @SuppressWarnings("unused")
     public static void main(String arg[]) {
@@ -26,6 +27,8 @@ public class Diagonal2 {
 	long t1, t2, t3, t4, t5, t6, totalFill = 0, totalSum1 = 0, totalSum2 = 0;
 
 	StringBuilder toFile = new StringBuilder();
+	
+	toFile.append("N SIZE" + COLUM_SEPARATOR + "FILL IN" + COLUM_SEPARATOR + "SUM_1" + COLUM_SEPARATOR + "SUM_2" + "\n");
 	
 	for (int n = 10; n <= 100; n += 1) {
 	    for (int repeticion = 0; repeticion <= nTimes*FILL_FACTOR; repeticion++) {
@@ -56,7 +59,7 @@ public class Diagonal2 {
 	    }
 	
 	    String res = ("SIZE = " + n + " ** " + "TIME FILL= " + (totalFill) + "ms ** " + "TIME SUM_1= " + (totalSum1) + "ms ** " + "TIME SUM_2= " + (totalSum2) + "ms " + " ** nTimes = " + nTimes);
-	    toFile.append(n + ";" + totalFill + ";" + totalSum1 + ";" + totalSum2 + "\n");
+	    toFile.append(n + COLUM_SEPARATOR + totalFill + COLUM_SEPARATOR + totalSum1 + COLUM_SEPARATOR + totalSum2 + "\n");
 	    System.out.println(res);
 	}
 	try {

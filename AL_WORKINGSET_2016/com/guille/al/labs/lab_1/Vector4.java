@@ -16,6 +16,7 @@ public class Vector4 {
     static int[] v;
     static final String PATH = "com/guille/al/files/out/";
     static final String FILE_NAME = "vector1_times";
+    static final String COLUM_SEPARATOR = ",";
     static final int SUM_FACTOR =  100000; // 5
     static final int FILL_FACTOR = 100000; // 5
     static final int MAX_FACTOR =  1000000; // 6
@@ -27,6 +28,8 @@ public class Vector4 {
 	long sumTSum = 0;
 	int sum = 0;
 	StringBuilder toFile = new StringBuilder();
+	
+	toFile.append("N SIZE" + COLUM_SEPARATOR + "SUM" + COLUM_SEPARATOR + "FILL IN" + COLUM_SEPARATOR + "MAX");
 	
 	for (int n = 10; n <= 2000; n += 5) { // n is increased *5
 	    v = new int[n];
@@ -56,7 +59,7 @@ public class Vector4 {
 	    }
 	    sum = sum + 1;
 	    String res = ("SIZE = " + n + " ** " + "TIME SUM= " + (sumTFillIn) + "ms ** " + "TIME FILL IN= " + ((t4 - t3)) + "ms ** " + "TIME MAX= " + (sumTSum) + "ms " + " ** nTimes = " + nTimes);
-	    toFile.append(n + ";" + sumTFillIn + ";" + (t4 - t3) + ";" + sumTSum + "\n");
+	    toFile.append(n + COLUM_SEPARATOR + sumTFillIn + COLUM_SEPARATOR + (t4 - t3) + COLUM_SEPARATOR + sumTSum + "\n");
 	    System.out.println(res);
 	}// for
 	try {
