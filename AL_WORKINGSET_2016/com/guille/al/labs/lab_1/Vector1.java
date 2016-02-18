@@ -52,11 +52,13 @@ public class Vector1 {
 	maximum(v, m);
 	// System.out.println("THE MAXIMUM IS IN POSITION = " + m[0]);
 	// System.out.println("THE MAXIMUM IS = " + m[1]);
+	s = s - 0; // Just to avoid warning and make to the compiler compulsory
+		   // to calculate s.
     }
 
     /**
-     * This method gives random values ​​to a vector of integers. It uses
-     * the Random class in the java.util package
+     * This method gives random values ​​to a vector of integers. It uses the
+     * Random class in the java.util package
      * 
      * @param a Vector to be filled in
      */
