@@ -22,6 +22,11 @@ public class Diagonal1{
 		System.out.println ("SECOND SOLUTION =" + sum2Diagonal(a));	
 	} //main
 
+	public static void runFill(int n) {
+	    a = new int[n][n];
+	    fillIn(a);
+	}
+	
 	/**
 	 * This method gives random values ​​to an array of integers,
 	 * using the Random class of the java.util package  
