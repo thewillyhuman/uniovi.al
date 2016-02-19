@@ -32,6 +32,51 @@ public class Selection1{
 	  Vector.write (v);
 	} 
 	
+	/**
+	 * Performs the selection sorting algorithm for n size and random vector.
+	 * 
+	 * @param n the size of the problem.
+	 */
+	public static void runSelectionRandom(int n) {
+	    int[] vector = new int[n];
+	    Vector.random(vector, 1000000);
+	    selection(vector);
+	}
+	
+	/**
+	 * Performs the selection sorting algorithm for n size and sorted vector.
+	 * 
+	 * @param n the size of the problem.
+	 */
+	public static void runSelectionSorted(int n) {
+	    int[] vector = new int[n];
+	    Vector.sorted(vector);
+	    selection(vector);
+	}
+	
+	/**
+	 * Performs the selection sorting algorithm for n size and inverse sorted vector.
+	 * 
+	 * @param n the size of the problem
+	 */
+	public static void runSelectionInvSorted(int n) {
+	    int[] vector = new int[n];
+	    Vector.inverselySorted(vector);
+	    selection(vector);
+	}
+	
+	/**
+	 * Performs the selection sorting algorithm.
+	 * Algorithm:
+	 * For i <-- 0 until i < elements size -1
+	 * 	find the minimum element from i --> elements size - 1
+	 * 	swap it with the current i position.
+	 * 
+	 * @param elements to be sorted.
+	 */
 	public static void selection(int[] elements) {
-	} 
+	    for(int i = 0; i < elements.length-1; i++) {
+		Util.interchange(elements, i, Util.findPosMin(elements, i));
+	    }
+	}
 } 
