@@ -20,9 +20,11 @@ public class Vector4 {
     static final int SUM_FACTOR =  100000; // 5
     static final int FILL_FACTOR = 100000; // 5
     static final int MAX_FACTOR =  1000000; // 6
+    static final int MIN_LOAD_FACTOR = 10;
+    static final int MAX_LOAD_FACTOR = 2000;
 
+    //	Any argument needed.
     public static void main(String arg[]) {
-	int nTimes = Integer.parseInt(arg[0]);
 	long t1, t2, t3, t4, t5, t6;
 	long sumTFillIn = 0;
 	long sumTSum = 0;
@@ -31,11 +33,11 @@ public class Vector4 {
 	
 	toFile.append("N SIZE" + COLUM_SEPARATOR + "SUM" + COLUM_SEPARATOR + "FILL IN" + COLUM_SEPARATOR + "MAX"+ "\n");
 	
-	for (int n = 10; n <= 2000; n += 5) { // n is increased *5
+	for (int n = MIN_LOAD_FACTOR; n <= MAX_LOAD_FACTOR; n += 5) { // n is increased *5
 	    v = new int[n];
 	    Vector1.fillIn(v);
 	    // We have to repeat the whole process to be measured
-	    for (int repetition = 1; repetition <= nTimes * SUM_FACTOR; repetition++) {
+	    for (int repetition = 1; repetition <= SUM_FACTOR; repetition++) {
 		t1 = System.currentTimeMillis();
 		sum = Vector1.sum(v);
 		t2 = System.currentTimeMillis();
@@ -44,22 +46,22 @@ public class Vector4 {
 
 	    t3 = System.currentTimeMillis();
 	    // We have to repeat the whole process to be measured
-	    for (int repetition = 1; repetition <= nTimes * FILL_FACTOR; repetition++) {
+	    for (int repetition = 1; repetition <= FILL_FACTOR; repetition++) {
 		Vector1.fillIn(v);
 	    }
 	    t4 = System.currentTimeMillis();
 
 	    int[] max = new int[2];
 	    // We have to repeat the whole process to be measured
-	    for (int repetition = 1; repetition <= nTimes * MAX_FACTOR; repetition++) {
+	    for (int repetition = 1; repetition <= MAX_FACTOR; repetition++) {
 		t5 = System.currentTimeMillis();
 		max = Vector1.maximum(v, max);
 		t6 = System.currentTimeMillis();
 		sumTSum += (t6 - t5);
 	    }
 	    sum = sum + 1;
-	    String res = ("SIZE = " + n + " ** " + "TIME SUM= " + (sumTFillIn) + "ms ** " + "TIME FILL IN= " + ((t4 - t3)) + "ms ** " + "TIME MAX= " + (sumTSum) + "ms " + " ** nTimes = " + nTimes);
-	    toFile.append(n + COLUM_SEPARATOR + sumTFillIn + COLUM_SEPARATOR + (t4 - t3) + COLUM_SEPARATOR + sumTSum + "\n");
+	    String res = ("SIZE = " + n + " ** " + "TIME SUM= " + (sumTFillIn) + "ms ** " + "TIME FILL IN= " + ((t4 - t3)) + "ms ** " + "TIME MAX= " + (sumTSum) + "ms ");
+	    toFile.append(n + COLUM_SEPARATOR + ((float)sumTFillIn/SUM_FACTOR) + COLUM_SEPARATOR + ((float)(t4 - t3)/FILL_FACTOR) + COLUM_SEPARATOR + ((float)sumTSum/MAX_FACTOR) + "\n");
 	    System.out.println(res);
 	}// for
 	try {
