@@ -3,6 +3,7 @@ package com.guille.al.labs.lab_2;
 import java.util.Random;
 
 public class Loop3 {
+    
 	public static void loop3(int n) {
 		/*Quadratic algorithm O(n^2) */
 		Random rn = new Random();
