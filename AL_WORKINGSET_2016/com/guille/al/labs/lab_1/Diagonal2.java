@@ -20,18 +20,19 @@ public class Diagonal2 {
     static final String PATH = "com/guille/al/files/out/";
     static final String FILE_NAME = "diagonal1_times";
     static final String COLUM_SEPARATOR = ",";
+    static final int MIN_LOAD_FACTOR = 10;
+    static final int MAX_LOAD_FACTOR = 100;
     
     @SuppressWarnings("unused")
     public static void main(String arg[]) {
-	int nTimes = Integer.parseInt(arg[0]); // nTimes
 	long t1, t2, t3, t4, t5, t6, totalFill = 0, totalSum1 = 0, totalSum2 = 0;
 
 	StringBuilder toFile = new StringBuilder();
 	
 	toFile.append("N SIZE" + COLUM_SEPARATOR + "FILL IN" + COLUM_SEPARATOR + "SUM_1" + COLUM_SEPARATOR + "SUM_2" + "\n");
 	
-	for (int n = 10; n <= 100; n += 1) {
-	    for (int repeticion = 0; repeticion <= nTimes*FILL_FACTOR; repeticion++) {
+	for (int n = MIN_LOAD_FACTOR; n <= MAX_LOAD_FACTOR; n += 1) {
+	    for (int repeticion = 0; repeticion <= FILL_FACTOR; repeticion++) {
 		a = new int[n][n];
 		t1 = System.currentTimeMillis();
 		Diagonal1.fillIn(a);
@@ -40,7 +41,7 @@ public class Diagonal2 {
 		totalFill += (t2 - t1);
 	    }
 
-	    for (int repeticion = 0; repeticion <= nTimes*SUM_1_FACTOR; repeticion++) {
+	    for (int repeticion = 0; repeticion <= SUM_1_FACTOR; repeticion++) {
 		a = new int[n][n];
 		t3 = System.currentTimeMillis();
 		Diagonal1.sum1Diagonal(a);
@@ -49,7 +50,7 @@ public class Diagonal2 {
 		totalSum1 += (t4 - t3);
 	    }
 
-	    for (int repeticion = 0; repeticion <= nTimes*SUM_2_FACTOR; repeticion++) {
+	    for (int repeticion = 0; repeticion <= SUM_2_FACTOR; repeticion++) {
 		a = new int[n][n];
 		t4 = System.currentTimeMillis();
 		Diagonal1.sum2Diagonal(a);
@@ -58,8 +59,8 @@ public class Diagonal2 {
 		totalSum2 += (t5 - t4);
 	    }
 	
-	    String res = ("SIZE = " + n + " ** " + "TIME FILL= " + (totalFill) + "ms ** " + "TIME SUM_1= " + (totalSum1) + "ms ** " + "TIME SUM_2= " + (totalSum2) + "ms " + " ** nTimes = " + nTimes);
-	    toFile.append(n + COLUM_SEPARATOR + totalFill + COLUM_SEPARATOR + totalSum1 + COLUM_SEPARATOR + totalSum2 + "\n");
+	    String res = ("SIZE = " + n + " ** " + "TIME FILL= " + (totalFill) + "ms ** " + "TIME SUM_1= " + (totalSum1) + "ms ** " + "TIME SUM_2= " + (totalSum2) + "ms ");
+	    toFile.append(n + COLUM_SEPARATOR + ((float)totalFill/FILL_FACTOR) + COLUM_SEPARATOR + ((float)totalSum1/SUM_1_FACTOR) + COLUM_SEPARATOR + ((float)totalSum2/SUM_2_FACTOR) + "\n");
 	    System.out.println(res);
 	}
 	try {

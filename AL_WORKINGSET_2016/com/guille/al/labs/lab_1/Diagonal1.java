@@ -38,8 +38,7 @@ public class Diagonal1{
 	    int n=a.length;
 	    for(int i=0;i<n;i++)
 	    	for(int j=0;j<n;j++)
-	    		a[i][j]= r.nextInt(199)-99; //values between -99 y 99
-	     
+	    		a[i][j]= r.nextInt(199)-99; //values between -99 y 99  
 	} 
 	
 	/**
