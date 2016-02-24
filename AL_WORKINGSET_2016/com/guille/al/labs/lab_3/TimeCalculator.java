@@ -31,7 +31,7 @@ public class TimeCalculator {
 	}
 	
 	long t1, t2, totalSorted = 0, totalInvSorted = 0, totalRand = 0;
-	String columNames = "N SIZE" + COLUM_SEPARATOR + "SORTED TIME" + COLUM_SEPARATOR + "INV. SRT. TIME" + COLUM_SEPARATOR + "RANDOM" + COLUM_SEPARATOR + "\n";
+	String columNames = "N SIZE" + COLUM_SEPARATOR + "SORTED TIME" + COLUM_SEPARATOR + "INV. SRT. TIME" + COLUM_SEPARATOR + "RANDOM" + "\n";
 	
 	/**
 	 * BUILDING THE FILES
