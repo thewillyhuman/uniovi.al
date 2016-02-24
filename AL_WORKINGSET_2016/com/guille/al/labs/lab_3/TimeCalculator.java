@@ -21,7 +21,7 @@ public class TimeCalculator {
     static final int TOTALN = 200;
 
     public static void main(String[] args) throws IOException {
-	
+	int[] auxV = null;
 	/**
 	 * SECURITY CHECK
 	 */
@@ -43,25 +43,28 @@ public class TimeCalculator {
 	}
 	
 	for (int n = 10; n <= TOTALN; n += 1) {
-	    
+	    auxV = new int[n];
 	    /* HERE STARTS THE BUBBLE TIMES MEASURING*/
 	    for (int repeticion = 0; repeticion <= BUBBLE_FACTOR; repeticion++) {
+		int[] v = Vector.sorted(auxV);
 		t1 = System.currentTimeMillis();
-		Bubble1.runBubbleSorted(n);
+		Bubble1.bubble(v);
 		t2 = System.currentTimeMillis();
 
 		totalSorted += (t2 - t1);
 	    }
 	    for (int repeticion = 0; repeticion <= BUBBLE_FACTOR; repeticion++) {
+		int[] v = Vector.inverselySorted(auxV);
 		t1 = System.currentTimeMillis();
-		Bubble1.runBubbleInvSorted(n);
+		Bubble1.bubble(v);
 		t2 = System.currentTimeMillis();
 
 		totalInvSorted += (t2 - t1);
 	    }
 	    for (int repeticion = 0; repeticion <= BUBBLE_FACTOR; repeticion++) {
+		int[] v = Vector.random(auxV, Vector.MAX_RAND);
 		t1 = System.currentTimeMillis();
-		Bubble1.runBubbleRandom(n);
+		Bubble1.bubble(v);
 		t2 = System.currentTimeMillis();
 
 		totalRand += (t2 - t1);
@@ -70,22 +73,25 @@ public class TimeCalculator {
 	    
 	    /* HERE STARTS THE SELECTION TIMES MEASURING*/
 	    for (int repeticion = 0; repeticion <= SELECTION_FACTOR; repeticion++) {
+		int[] v = Vector.sorted(auxV);
 		t1 = System.currentTimeMillis();
-		Selection1.runSelectionSorted(n);
+		Selection1.selection(v);
 		t2 = System.currentTimeMillis();
 
 		totalSorted += (t2 - t1);
 	    }
 	    for (int repeticion = 0; repeticion <= SELECTION_FACTOR; repeticion++) {
+		int[] v = Vector.inverselySorted(auxV);
 		t1 = System.currentTimeMillis();
-		Selection1.runSelectionInvSorted(n);
+		Selection1.selection(v);
 		t2 = System.currentTimeMillis();
 
 		totalInvSorted += (t2 - t1);
 	    }
 	    for (int repeticion = 0; repeticion <= SELECTION_FACTOR; repeticion++) {
+		int[] v = Vector.random(auxV, Vector.MAX_RAND);
 		t1 = System.currentTimeMillis();
-		Selection1.runSelectionRandom(n);
+		Selection1.selection(v);
 		t2 = System.currentTimeMillis();
 
 		totalRand += (t2 - t1);
@@ -94,22 +100,25 @@ public class TimeCalculator {
 	    
 	    /* HERE STARTS THE INSERTION TIMES MEASURING*/
 	    for (int repeticion = 0; repeticion <= INSERTION_FACTOR; repeticion++) {
+		int[] v = Vector.sorted(auxV);
 		t1 = System.currentTimeMillis();
-		Insertion1.runInsertionSorted(n);
+		Insertion1.insertion(v);
 		t2 = System.currentTimeMillis();
 
 		totalSorted += (t2 - t1);
 	    }
 	    for (int repeticion = 0; repeticion <= INSERTION_FACTOR; repeticion++) {
+		int[] v = Vector.inverselySorted(auxV);
 		t1 = System.currentTimeMillis();
-		Insertion1.runInsertionInvSorted(n);
+		Insertion1.insertion(v);
 		t2 = System.currentTimeMillis();
 
 		totalInvSorted += (t2 - t1);
 	    }
 	    for (int repeticion = 0; repeticion <= INSERTION_FACTOR; repeticion++) {
+		int[] v = Vector.random(auxV, Vector.MAX_RAND);
 		t1 = System.currentTimeMillis();
-		Insertion1.runInsertionRandom(n);
+		Insertion1.insertion(v);
 		t2 = System.currentTimeMillis();
 
 		totalRand += (t2 - t1);
@@ -118,22 +127,25 @@ public class TimeCalculator {
 	    
 	    /* HERE STARTS THE QUICKSORT TIMES MEASURING*/
 	    for (int repeticion = 0; repeticion <= QUICK_FACTOR; repeticion++) {
+		int[] v = Vector.sorted(auxV);
 		t1 = System.currentTimeMillis();
-		QuicksortCentralElement.runSort(n);
+		QuicksortCentralElement.quicksort(v);
 		t2 = System.currentTimeMillis();
 
 		totalSorted += (t2 - t1);
 	    }
 	    for (int repeticion = 0; repeticion <= QUICK_FACTOR; repeticion++) {
+		int[] v = Vector.inverselySorted(auxV);
 		t1 = System.currentTimeMillis();
-		QuicksortCentralElement.runInvSort(n);
+		QuicksortCentralElement.quicksort(v);
 		t2 = System.currentTimeMillis();
 
 		totalInvSorted += (t2 - t1);
 	    }
 	    for (int repeticion = 0; repeticion <= QUICK_FACTOR; repeticion++) {
+		int[] v = Vector.random(auxV, Vector.MAX_RAND);
 		t1 = System.currentTimeMillis();
-		QuicksortCentralElement.runRandom(n);
+		QuicksortCentralElement.quicksort(v);
 		t2 = System.currentTimeMillis();
 
 		totalRand += (t2 - t1);

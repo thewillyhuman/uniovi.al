@@ -8,26 +8,30 @@ It also writes the contents of the vector
 */
 
 public class Vector {
+    
+    public static final int MAX_RAND = 1000000;
 
-public static void sorted(int[]a)
+public static int[] sorted(int[]a)
 /* 	This method fills with values ​​sorted in ascending order
 */
 {
     int n= a.length;
     for(int i=0;i<n;i++) 
     	a[i]=i;
+    return a;
 }
 
-public static void inverselySorted(int[]a)
+public static int[] inverselySorted(int[]a)
 /* 	This method fills with values ​​sorted in descending order
 */
 {
     int n= a.length;
     for(int i=0;i<n;i++) 
     	a[i]=n-i-1;
+    return a;
 }     
 
-public static void random(int[]a, int maxRandom)
+public static int[] random(int[]a, int maxRandom)
 /* 	This method gives random values ​​to a vector of integers.
  * It uses the Random class from the java.util package  */
 {
@@ -35,6 +39,7 @@ public static void random(int[]a, int maxRandom)
     int n= a.length;
     for(int i=0;i<n;i++)
        a[i]=r.nextInt(maxRandom); //values between 0 and maxRandom
+    return a;
 }     
 
 public static void write(int[]a)
