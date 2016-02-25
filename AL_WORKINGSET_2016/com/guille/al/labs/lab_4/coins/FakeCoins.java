@@ -1,5 +1,7 @@
 package com.guille.al.labs.lab_4.coins;
 
+import java.util.Random;
+
 public class FakeCoins {
     
     private Coins coins;
@@ -22,11 +24,18 @@ public class FakeCoins {
     }
     
     /**
-     * Computes the standard weight for the coins.
+     * Computes the standard weight for the coins. With O(1).
      */
     private void calculateWeight() {
-	int aux = (coins.coins[0] + coins.coins[1] + coins.coins[2]) / 3;
-	this.weight = aux;
+	Random r = new Random();
+	int aux1;
+	int aux2;
+	do {
+	    aux1 = r.nextInt(coins.getNumberOfCoins()-1);
+	    aux2 = r.nextInt(coins.getNumberOfCoins()-1);
+	} while(aux1-aux2!=0);
+	
+	this.weight = coins.coins[aux1];
     }
     
     /**
@@ -51,18 +60,8 @@ public class FakeCoins {
     }
     
     private int findFake(int left, int right) {
-	int middle;
-	if(coins.getNumberOfCoins()%2==0)
-	    middle = (right - left)/2;
-	else
-	    middle = ((right - left)/2)-1;
-	
-	if(coins.weigh(left, middle, middle, right) == ScalePosition.LEFT)
-	    return findFake(left, middle);
-	else if(coins.weigh(left, middle, middle, right) == ScalePosition.RIGHT)
-	    return findFake(middle, right);
-	else
-	    return middle;
+	System.out.println("Weight calculated: " + weight);
+	return -1;
     }
     
 }
