@@ -61,6 +61,14 @@ public class FakeCoins {
     
     private int findFake(int left, int right) {
 	System.out.println("Weight calculated: " + weight);
+	int middle = (right - left) / 2;
+	if(coins.weigh(left, middle, middle, right) == ScalePosition.EQUAL)
+	    System.out.println("IS THE MIDDLE");
+	else if(coins.weigh(left, middle, middle, right) == ScalePosition.LEFT)
+	    System.out.println("IS THE LEFT SIDE");
+	else if(coins.weigh(left, middle, middle, right) == ScalePosition.RIGHT)
+	    System.out.println("IS THE RIGHT SIDE");
+	
 	return -1;
     }
     
