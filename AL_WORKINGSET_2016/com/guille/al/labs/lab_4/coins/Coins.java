@@ -30,7 +30,6 @@ public class Coins {
 	int standardWeight = r.nextInt(50);
 	coins = new int[numberOfCoins];
 	Arrays.fill(coins, standardWeight);
-	System.out.println("Standard weight " + standardWeight);
 	weight = standardWeight;
 
 	int fakePosition = r.nextInt(coins.length);
@@ -53,7 +52,6 @@ public class Coins {
 	int standardWeight = r.nextInt(50);
 	coins = new int[numberOfCoins];
 	Arrays.fill(coins, standardWeight);
-	System.out.println("Standard weight " + standardWeight);
 	weight = standardWeight;
 
 	if (r.nextBoolean())
