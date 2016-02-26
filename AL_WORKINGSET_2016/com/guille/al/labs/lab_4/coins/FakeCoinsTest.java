@@ -8,7 +8,7 @@ import org.junit.Test;
  */
 public class FakeCoinsTest {
     
-    private static final int FINAL_RUNS = 10000;
+    private static final int FINAL_RUNS = 1000;
     private static final int INICIAL_RUNS = 100;
     
     @Test
