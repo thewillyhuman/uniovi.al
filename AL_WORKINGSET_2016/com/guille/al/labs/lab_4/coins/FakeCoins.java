@@ -85,9 +85,9 @@ public class FakeCoins {
      * @return
      */
     private int findFake(int left, int right) {
-	//coins.prints(left, right);
 	int size = right - left + 1;
 	int middle = (int) Math.round((right + left)/2.0);
+	
 	if(size==1) {
 	   return left;
 	}
