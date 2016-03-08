@@ -1,0 +1,8 @@
+Victor Tamara 50
+Victor Pablo 30
+Tamara Alberto 15
+Pablo Alberto 10
+Pablo Celia 15
+Alberto Elena 35
+Elena Victor 20
+Celia Tamara 10
