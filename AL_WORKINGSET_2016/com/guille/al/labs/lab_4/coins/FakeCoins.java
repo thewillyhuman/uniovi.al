@@ -164,6 +164,7 @@ public class FakeCoins {
 	}
     }
 
+    @Deprecated
     private int findFake3V(int[] coinArray) {
 	if (coinArray.length == 0)
 	    return -1; // fake coin not found
