@@ -1,5 +1,6 @@
 package com.guille.al.labs.lab_4.coins;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class FakeCoins {
@@ -72,14 +73,11 @@ public class FakeCoins {
     /**
      * Find coins method.
      * 
-     * IF THE BAG HAS LESS THAN 3 COINS WE CAN'T DETERMINE WHICH ONE IS THE
-     * FAKE.
+     * IF THE BAG HAS LESS THAN 3 COINS WE CAN'T DETERMINE WHICH ONE IS THE FAKE.
      * 
      * 0. Find the standard weight of the bag. O(n). Can be done faster??
      * 
-     * 1. split the coins array in two parts, left and right. 2. if both parts
-     * are equals the one in the center, in common is the fake. 3. if LEFT the
-     * same only for left. 4. if RIGHT the same for right.
+     * 1. split the coins array in two parts, left and right. 2. if both parts are equals the one in the center, in common is the fake. 3. if LEFT the same only for left. 4. if RIGHT the same for right.
      * 
      */
     public int findFake() {
@@ -89,11 +87,15 @@ public class FakeCoins {
 	return findFake(0, coins.getNumberOfCoins() - 1);
 
     }
-    
+
     public int findFake2V() {
 	if (coins.getNumberOfCoins() < 3)
 	    throw new IllegalStateException("We cannot determine wich is the fake coins for " + coins.getNumberOfCoins() + " coins.");
 	return findFake2V(0, coins.getNumberOfCoins() - 1);
+    }
+    
+    public int findFake3V() {
+	return this.findFake3V(coins.coins);
     }
 
     /**
@@ -160,6 +162,42 @@ public class FakeCoins {
 	} else {
 	    return findFake2V(left, leftPointer - 1);
 	}
+    }
+
+    private int findFake3V(int[] coinArray) {
+	if (coinArray.length == 0)
+	    return -1; // fake coin not found
+	else if (coinArray.length == 1)
+	    return 0;
+	else {
+	    boolean oddNumCoins = coinArray.length % 2 == 1;
+	    int third = coinArray.length / 3;
+	    int[] leftCoins = Arrays.copyOfRange(coinArray, 0, third);
+	    int[] middleCoins = Arrays.copyOfRange(coinArray, third, 2 * third);
+	    int[] rightCoins = Arrays.copyOfRange(coinArray, 2 * third, coinArray.length);
+	   
+	    ScalePosition result = coins.weighFromArray(leftCoins, middleCoins);
+	    
+	    if (result == ScalePosition.EQUAL) {
+		searchMessage(rightCoins);
+		return findFake3V(rightCoins);
+	    } else if (result == ScalePosition.RIGHT) {
+		searchMessage(leftCoins);
+		return findFake3V(leftCoins);
+	    } else if (result == ScalePosition.LEFT) {
+		searchMessage(middleCoins);
+		return findFake3V(middleCoins);
+	    } else if (oddNumCoins)
+		return coinArray.length - 1;
+	    else
+		return -1; // no fake coin found
+	}
+    }
+
+    private void searchMessage(int[] coins) {
+	if (coins.length >= 1) {
+	} else
+	    System.out.println("searching empty array");
     }
 
     /**

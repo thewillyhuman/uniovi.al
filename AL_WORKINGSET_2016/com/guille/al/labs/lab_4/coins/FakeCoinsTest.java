@@ -17,7 +17,7 @@ public class FakeCoinsTest {
 	    for (int j = 0; j < i; j++) { // Position of the fake coin
 		Coins bag = new Coins(i, j); // We create a bag of i coins, placing the fake coin in the position j
 		FakeCoins fakeCoins = new FakeCoins(bag);
-		int fakePos = fakeCoins.findFake(); // Our algorithm says that the fake coin is in the position fakeCoin.
+		int fakePos = fakeCoins.findFake3V(); // Our algorithm says that the fake coin is in the position fakeCoin.
 		// Lets compare the expected result (fakePos) with the actual position we know (j)
 		assertEquals("Error because the expected result is not equal to the obtained one:", j, fakePos);
 	    }

@@ -111,6 +111,40 @@ public class Coins {
 	else
 	    return ScalePosition.RIGHT;
     }
+    
+    /**
+     * Function that weighs both sides of all currencies specified in the
+     * parameters and returns to where the balance inclines
+     * 
+     * @param leftSideStarts Index of the first element to the left plate
+     * @param leftSideEnds Index of the last element to the left plate
+     * @param rightSideStarts Index of the first element to the right plate
+     * @param rightSideEnds Index of the last element to the right plate
+     * @return - ScalePosition.EQUAL The currencies of the two plates have the
+     *         same weight ScalePosition.LEFT The coins of the left have more
+     *         weight ScalePosition.RIGHT The coins of the right have more
+     *         weight
+     */
+    ScalePosition weighFromArray(int[] left, int[] right) {
+
+	// Loop through all the elements of the subrange adding their weights
+	int leftWeight = 0;
+	for (int i : left)
+	    leftWeight += coins[i];
+
+	/// Loop through all the elements of the subrange adding their weights
+	int rightWeight = 0;
+	for (int i : right)
+	    rightWeight += coins[i];
+
+	// Returns the enumerate corresponding to the result
+	if (leftWeight == rightWeight)
+	    return ScalePosition.EQUAL;
+	else if (leftWeight > rightWeight)
+	    return ScalePosition.LEFT;
+	else
+	    return ScalePosition.RIGHT;
+    }
 
     /**
      * Auxiliary support method for printing the values of the currencies of a

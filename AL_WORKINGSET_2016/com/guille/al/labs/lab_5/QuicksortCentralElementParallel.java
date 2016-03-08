@@ -14,7 +14,7 @@ public class QuicksortCentralElementParallel extends RecursiveAction {
     public int right;
     
     public static void main(String[] args) {
-	int[] v = new int[10];
+	int[] v = new int[100000];
 	Vector.random(v, 10000);
 	Vector.write(v);
 	QuicksortCentralElementParallel problem = new QuicksortCentralElementParallel(v, 0, v.length-1);
