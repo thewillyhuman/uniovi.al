@@ -14,8 +14,8 @@ public class TimeCalculator {
     final static int INSERTION_FACTOR = 10000;
     final static int QUICK_FACTOR = 10000;
     static final String PATH = "com/guille/al/files/out/";
-    static final String[] FILE_NAMES = {"Bubble_times", "Selection_times", "Insertion_times", "Quicksort_times"}; // 4
-    static final int[] FACTORS = {BUBBLE_FACTOR, SELECTION_FACTOR, INSERTION_FACTOR, QUICK_FACTOR}; // 4
+    static final String[] FILE_NAMES = {"Bubble_times", "Selection_times", "Insertion_times", "Quicksort_times" }; // 4
+    static final int[] FACTORS = {BUBBLE_FACTOR, SELECTION_FACTOR, INSERTION_FACTOR, QUICK_FACTOR }; // 4
     static List<StringBuilder> files = new ArrayList<StringBuilder>();
     static final String COLUM_SEPARATOR = ",";
     static final int TOTALN = 200;
@@ -150,6 +150,7 @@ public class TimeCalculator {
 
 		totalRand += (t2 - t1);
 	    }
+	    
 	    files.get(3).append(n+ COLUM_SEPARATOR + ((float)totalSorted/QUICK_FACTOR) + COLUM_SEPARATOR + ((float)totalInvSorted/QUICK_FACTOR) + COLUM_SEPARATOR + ((float)totalRand/QUICK_FACTOR) + "\n");
 	    
 	    System.out.println((((float)n/TOTALN) * 100)+ "% COMPLETED...");

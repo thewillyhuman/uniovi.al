@@ -40,6 +40,15 @@ public class QuicksortCentralElementParallel extends RecursiveAction {
 		this.left = left;
 		this.right = right;
 	}
+	
+	/**
+	 * 
+	 * @param v
+	 */
+	public static void quicksortParallel(int[] v) {
+	    QuicksortCentralElementParallel problem = new QuicksortCentralElementParallel(v, 0, v.length-1);
+	    problem.compute();
+	}
 
 	@Override
 	public void compute() {

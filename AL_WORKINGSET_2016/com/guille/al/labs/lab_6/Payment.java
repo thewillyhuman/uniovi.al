@@ -9,45 +9,45 @@ package com.guille.al.labs.lab_6;
  *
  */
 public class Payment {
-	
-	private String from; // Source of the payment.
-	private String to; // Destination of the payment.
-	private int amount; // Amount of the payment.
-	
-	/**
-	 * Creates a payment.
-	 * 
-	 * @param from is the source of the payment.
-	 * @param to is the destination of the payment.
-	 * @param amount that contains the payment
-	 */
-	public Payment(String from, String to, int amount) {
-		if (from == null)
-			throw new IllegalArgumentException("The source of the payment is not valid.");
-		if (to == null)
-			throw new IllegalArgumentException("The destination of the payment is not valid.");
-		if (amount < 0)
-			throw new IllegalArgumentException("Payments cannot be negative.");
-		
-		this.from = from;
-		this.to = to;
-		this.amount = amount;
-	}
-	
-	/**
-	 * If the payment does not follow some rules won't be accepted.
-	 * 
-	 * @return true if there exits a source and a destination. And if the amount is positive. False otherwise.
-	 */
-	public boolean isCorrupted() {
-		if(from.length() < 0 && from.length() < 0 && from.compareTo(to)!=0 && amount < 0)
-			return true;
-		return false;
-	}
-	
-	@Override
-	public String toString() {
-		return (from + ", " + to + ", " + amount);
-	}
+
+    private String from; // Source of the payment.
+    private String to; // Destination of the payment.
+    private int amount; // Amount of the payment.
+
+    /**
+     * Creates a payment.
+     * 
+     * @param from is the source of the payment.
+     * @param to is the destination of the payment.
+     * @param amount that contains the payment
+     */
+    public Payment(String from, String to, int amount) {
+	if (from == null)
+	    throw new IllegalArgumentException("The source of the payment is not valid.");
+	if (to == null)
+	    throw new IllegalArgumentException("The destination of the payment is not valid.");
+	if (amount < 0)
+	    throw new IllegalArgumentException("Payments cannot be negative.");
+
+	this.from = from;
+	this.to = to;
+	this.amount = amount;
+    }
+
+    /**
+     * If the payment does not follow some rules won't be accepted.
+     * 
+     * @return true if there exits a source and a destination. And if the amount is positive. False otherwise.
+     */
+    public boolean isCorrupted() {
+	if (from.length() < 0 && from.length() < 0 && from.compareTo(to) != 0 && amount < 0)
+	    return true;
+	return false;
+    }
+
+    @Override
+    public String toString() {
+	return (from + ", " + to + ", " + amount);
+    }
 
 }
