@@ -10,8 +10,8 @@ package com.guille.al.labs.lab_6;
  */
 public class Payment {
 
-    private String from; // Source of the payment.
-    private String to; // Destination of the payment.
+    private Person from; // Source of the payment.
+    private Person to; // Destination of the payment.
     private int amount; // Amount of the payment.
 
     /**
@@ -29,25 +29,47 @@ public class Payment {
 	if (amount < 0)
 	    throw new IllegalArgumentException("Payments cannot be negative.");
 
-	this.from = from;
-	this.to = to;
+	if(Persons.contains(from)) {
+	    this.from = Persons.getPersorn(from);
+	} else {
+	    this.from = Persons.addPerson(new Person(from));
+	}
+	
+	if(Persons.contains(to)) {
+	    this.to = Persons.getPersorn(to);
+	} else {
+	    this.to = Persons.addPerson(new Person(to));
+	}
+	
 	this.amount = amount;
     }
 
+    public Person getFrom() {
+	return this.from;
+    }
+    
+    public Person getTo() {
+	return this.to;
+    }
+    
+    public int getAmount() {
+	return this.amount;
+    }
+    
     /**
      * If the payment does not follow some rules won't be accepted.
      * 
      * @return true if there exits a source and a destination. And if the amount is positive. False otherwise.
      */
     public boolean isCorrupted() {
-	if (from.length() < 0 && from.length() < 0 && from.compareTo(to) != 0 && amount < 0)
+	if (from.getName().length() < 0 && from.getName().length() < 0 && from.getName().compareTo(to.getName()) != 0 && amount < 0)
 	    return true;
 	return false;
     }
 
     @Override
     public String toString() {
-	return (from + ", " + to + ", " + amount);
+	return ("Payment: " + from + ", " + to + ", " + amount);
     }
 
 }

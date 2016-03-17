@@ -27,7 +27,6 @@ public class MinimizeCashFlowTest {
 	}
     }
 
-    @Ignore("Not ready to run yet")
     @Test
     public void testA() throws IOException {
 	MinimizeCashFlow cashFlow = MinimizeCashFlow.loadDataFromFile("com/guille/al/files/in/case1.txt");
@@ -41,7 +40,6 @@ public class MinimizeCashFlowTest {
 	assertEquals(3000, cashFlow.getFinalDebt("David", "Ana"));
     }
 
-    @Ignore("Not ready to run yet")
     @Test
     public void testB() throws IOException {
 	MinimizeCashFlow cashFlow = MinimizeCashFlow.loadDataFromFile("com/guille/al/files/in/case2.txt");
@@ -57,7 +55,6 @@ public class MinimizeCashFlowTest {
 	assertEquals(5, cashFlow.getFinalDebt("Alberto", "Pablo"));
     }
 
-    @Ignore("Not ready to run yet")
     @Test
     public void testC() throws IOException {
 	MinimizeCashFlow cashFlow = MinimizeCashFlow.loadDataFromFile("com/guille/al/files/in/case3.txt");
