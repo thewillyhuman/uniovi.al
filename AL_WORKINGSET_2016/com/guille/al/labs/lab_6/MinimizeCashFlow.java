@@ -16,12 +16,20 @@ public class MinimizeCashFlow {
 	payments = new ArrayList<Payment>();
     }
 
+    /**
+     * Will initialize the graph containing the payments and will starts the computation of the final result.
+     */
     public void calculate() {
 	this.graph = loadDataIntoGraph();
 	minCashFlow(this.graph);
     }
 
-    public int[][] loadDataIntoGraph() {
+    /**
+     * Internal method to load all object data in to a graph / matrix where i has to pay to j
+     * 
+     * @return the corresponding graph.
+     */
+    private int[][] loadDataIntoGraph() {
 	int size = Persons.getPersons().size();
 	int graph[][] = new int[size][size];
 	this.result = new int[size][size];
@@ -33,8 +41,13 @@ public class MinimizeCashFlow {
 	return graph;
     }
 
-    // A utility function that returns index of maximum value in arr[]
-    int getMax(int arr[]) {
+    /**
+     * Utility method to get the max value in a given integer array.
+     * 
+     * @param arr to be computed
+     * @return the max integer value.
+     */
+    private int getMax(int arr[]) {
 	int maxInd = 0;
 	for (int i = 1; i < arr.length; i++)
 	    if (arr[i] > arr[maxInd])
@@ -42,7 +55,13 @@ public class MinimizeCashFlow {
 	return maxInd;
     }
 
-    int getMin(int arr[]) {
+    /**
+     * Utility method to get the minimum value in a given integer array.
+     * 
+     * @param arr to be computed
+     * @return the minimum integer value.
+     */
+    private int getMin(int arr[]) {
 	int minInd = 0;
 	for (int i = 1; i < arr.length; i++)
 	    if (arr[i] < arr[minInd])
@@ -50,7 +69,12 @@ public class MinimizeCashFlow {
 	return minInd;
     }
 
-    void minCashFlowRec(int amount[]) {
+    /**
+     * Computes the cash flow for each person and stores the final result in the result matrix.
+     * 
+     * @param amount is the array with the amounts to be paid.
+     */
+    private void minCashFlowRec(int amount[]) {
 	// Find the indexes of minimum and maximum values in amount[]
 	// amount[mxCredit] indicates the maximum amount to be given
 	// (or credited) to any person .
@@ -78,10 +102,12 @@ public class MinimizeCashFlow {
 	minCashFlowRec(amount);
     }
 
-    // Given a set of persons as graph[] where graph[i][j] indicates
-    // the amount that person i needs to pay person j, this function
-    // finds and prints the minimum cash flow to settle all debts.
-    void minCashFlow(int graph[][]) {
+    /**
+     * Given a set of persons as graph[] where graph[i][j] indicates the amount that person i needs to pay person j, this function finds and prints the minimum cash flow to settle all debts.
+     * 
+     * @param graph to be computed. It will include the amount person i has to pay to person j.
+     */
+    private void minCashFlow(int graph[][]) {
 	// Create an array amount[], initialize all value in it as 0.
 	int amount[] = new int[graph.length];
 
@@ -95,32 +121,26 @@ public class MinimizeCashFlow {
 	minCashFlowRec(amount);
     }
 
-    public Person findMaxCreditor() {
-	Person aux = Persons.getPersons().get(0);
-	for (Person p : Persons.getPersons()) {
-	    if (p.getCredit() > aux.getCredit())
-		aux = p;
-	}
-	return aux;
-    }
-
-    public Person findMaxDebtor() {
-	Person aux = Persons.getPersons().get(0);
-	for (Person p : Persons.getPersons()) {
-	    if (p.getDebt() < aux.getDebt())
-		aux = p;
-	}
-	return aux;
-    }
-
+    /**
+     * From a given origin and a destination of the transaction will return the final debt.
+     * 
+     * @param from is the name of the origin of the transaction.
+     * @param to is the name of the destination of the transaction.
+     * @return the final debt origin has to pay to destination.
+     */
     public int getFinalDebt(String from, String to) {
 	int indexFrom = Persons.getIndexOf(Persons.getPersorn(from));
 	int indexTo = Persons.getIndexOf(Persons.getPersorn(to));
-	
+
 	return this.result[indexFrom][indexTo];
     }
 
-    public void addPayment(Payment payment) {
+    /**
+     * Internal auxiliary method to add a payment to the array of payments and check if it's corrupted or not.
+     * 
+     * @param payment to be added.
+     */
+    private void addPayment(Payment payment) {
 	if (payment.isCorrupted())
 	    throw new IllegalArgumentException("The payment: " + payment.toString() + "is corrupted.");
 	payments.add(payment);
