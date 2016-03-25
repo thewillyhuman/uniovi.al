@@ -1,6 +1,8 @@
 package com.guille.al.labs.lab_7;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -53,8 +55,13 @@ public class RoadsInCityTest {
 
     @Test
     public void testG() {
-	long result = executeFromFile(relativePath+"case7.txt");
-	assertEquals(35, result);
+	try {
+	    long result = executeFromFile(relativePath+"case7.txt");
+	    assertEquals(-1, result);
+	    fail("Exception expected.");
+	} catch (IllegalArgumentException e) {
+	    
+	}
     }
 
     @Test

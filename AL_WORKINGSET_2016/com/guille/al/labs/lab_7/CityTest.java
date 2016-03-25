@@ -8,9 +8,9 @@ public class CityTest {
 
     @Test
     public void test() {
-	City city = new City(5, 5);
-	city.setDestination(1, 4);
-	city.setOrigin(5, 1);
+	City city = new City(7, 7);
+	city.setOrigin(6, 0);
+	city.setDestination(0, 6);
 	city.print();
 	System.out.println(city.calculate(city.getOrigin()));
     }

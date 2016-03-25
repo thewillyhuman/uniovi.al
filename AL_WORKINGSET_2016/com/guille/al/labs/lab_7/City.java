@@ -9,8 +9,8 @@ public class City {
     private long paths = 0;
     
     public City(int width, int heigth) {
-	this.width = width;
-	this.heigth = heigth;
+	this.width = width-1;
+	this.heigth = heigth-1;
 	Barriers.restore();
     }
     
