@@ -104,7 +104,7 @@ public class RoadsInCityTest {
 	    String[] end = positions[1].split(","); // endX and endY
 	    roads.setOrigin(Integer.parseInt(start[0]), Integer.parseInt(start[1]));
 	    roads.setDestination(Integer.parseInt(end[0]), Integer.parseInt(end[1]));
-	    result = roads.calculate(roads.getOrigin());
+	    result = roads.calculateRecursive(roads.getOrigin());
 	} catch (IOException e) {
 	    e.printStackTrace();
 	}

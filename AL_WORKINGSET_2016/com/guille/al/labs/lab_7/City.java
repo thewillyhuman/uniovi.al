@@ -58,7 +58,7 @@ public class City {
 	}
     }
     
-    public long calculate(Coordinate current) {
+    public long calculateRecursive(Coordinate current) {
 	Coordinate up = new Coordinate( current.getX(), current.getY() + 1);
 	Coordinate right = new Coordinate( current.getX() - 1, current.getY());
 	
@@ -69,11 +69,11 @@ public class City {
 	    this.paths++;
 	
 	if(!Barriers.contains(up.getX(), up.getY()) && up.getY() <= this.destination.getY()) {
-	    calculate(up);
+	    calculateRecursive(up);
 	}
 	
 	if(!Barriers.contains(right.getX(), right.getY()) && right.getX() >= this.destination.getX()) {
-	    calculate(right);
+	    calculateRecursive(right);
 	}
 	
 	

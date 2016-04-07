@@ -13,7 +13,7 @@ public class CityTest {
 	city.setOrigin(6, 0);
 	city.setDestination(0, 6);
 	city.print();
-	System.out.println(city.calculate(city.getOrigin()));
+	System.out.println(city.calculateRecursive(city.getOrigin()));
     }
 
 }
