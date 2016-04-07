@@ -14,7 +14,7 @@ public class CityTest {
 	city.setDestination(1, 4);
 	city.addObstacle(1, 2);
 	//city.print();
-	System.out.println(city.calculate());
+	System.out.println("Nº of paths: "+city.calculate());
 	city.printSolution();
     }
 

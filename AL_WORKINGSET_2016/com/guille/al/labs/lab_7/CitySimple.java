@@ -9,8 +9,6 @@ public class CitySimple {
     private int destinationCoordinate[] = new int[2];
 
     private static final int BARRIER = -3;
-    private static final int ORIGIN = -2;
-    private static final int DESTINATION = -1;
 
     public CitySimple(int width, int heigth) {
 	this.width = width - 1;
@@ -20,14 +18,12 @@ public class CitySimple {
 
     public void setOrigin(int x, int y) {
 	checkCoordinate(x, y);
-	solution[x][y] = ORIGIN;
 	originCoordinate[0] = x;
 	originCoordinate[1] = y;
     }
 
     public void setDestination(int x, int y) {
 	checkCoordinate(x, y);
-	solution[x][y] = DESTINATION;
 	destinationCoordinate[0] = x;
 	destinationCoordinate[1] = y;
     }
@@ -45,11 +41,7 @@ public class CitySimple {
     public void printSolution() {
 	for(int i = 0; i <= this.width; i++) {
 	    for(int j = 0; j <= this.heigth; j++) {
-		if(solution[i][j] == ORIGIN)
-		    System.out.print("\t START \t");
-		else if(solution[i][j] == DESTINATION)
-		    System.out.print("\t END \t");
-		else if(solution[i][j] == BARRIER)
+		if(solution[i][j] == BARRIER)
 		    System.out.print("\t -1 \t");
 		else
 		    System.out.print("\t"+solution[i][j]+"\t");
@@ -60,6 +52,13 @@ public class CitySimple {
     
     public long calculate() {
 	loadBaseCases();
+	
+	if(originCoordinate[0] < destinationCoordinate[0])
+	    return -1;
+	if(originCoordinate[1] > destinationCoordinate[1])
+	    return -1;
+	if(originCoordinate[0] == destinationCoordinate[0] && originCoordinate[1] == destinationCoordinate[1])
+	    return -1;
 	
 	for(int i = originCoordinate[0]-1;  i >= destinationCoordinate[0]; i--) {
 	    for(int j = originCoordinate[1]+1; j <= destinationCoordinate[1]; j++) {
