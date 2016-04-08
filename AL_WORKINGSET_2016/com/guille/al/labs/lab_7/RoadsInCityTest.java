@@ -2,12 +2,9 @@ package com.guille.al.labs.lab_7;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-
-import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -26,7 +23,7 @@ public class RoadsInCityTest {
     @Test
     public void testB() {
 	long result = executeFromFile(relativePath + "case2.txt");
-	assertEquals(252, result);
+	assertEquals(336, result);
     }
 
     @Test
