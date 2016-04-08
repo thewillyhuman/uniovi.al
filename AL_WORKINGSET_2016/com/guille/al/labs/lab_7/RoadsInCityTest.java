@@ -73,7 +73,6 @@ public class RoadsInCityTest {
 	assertEquals(-1, result);
     }
 
-    @SuppressWarnings("resource")
     private long executeFromFile(String file) {
 	long result = 0;
 	// Input
@@ -105,7 +104,7 @@ public class RoadsInCityTest {
 	    String[] end = positions[1].split(","); // endX and endY
 	    roads.setOrigin(Integer.parseInt(start[0]), Integer.parseInt(start[1]));
 	    roads.setDestination(Integer.parseInt(end[0]), Integer.parseInt(end[1]));
-	    //result = roads.calculateDynamic(roads.getOrigin());
+	    // result = roads.calculateDynamic(roads.getOrigin());
 	    result = roads.calculate();
 	} catch (IOException e) {
 	    e.printStackTrace();
