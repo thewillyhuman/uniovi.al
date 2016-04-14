@@ -150,8 +150,10 @@ public class Nonogram {
 	    saveState();
 	} else {
 	    for(int k = 1; k <= size; k++) {
-		if(!this.wasFound) {
-		    
+		if(!this.wasFound && checkColum(x, ) && checkRow(y, )) {
+		    placeSlot(x, y, blockSize);
+		    backtracking( , );
+		    unplaceSlot(x, y, blockSize);
 		}
 	    }
 	}
