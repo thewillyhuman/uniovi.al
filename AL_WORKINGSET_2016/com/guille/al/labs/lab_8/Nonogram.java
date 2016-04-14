@@ -6,20 +6,23 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.guille.util.Arrays;
+
 public class Nonogram {
 
     private int size;
     private List<ArrayList<Integer>> verticalRestrictions;
     private List<ArrayList<Integer>> horizontalRestrictions;
     private boolean[][] board;
+    private boolean[][] solution;
+    private boolean wasFound;
 
     public static final String PATH_IN = "com/guille/al/files/in/lab_8/";
 
     /**
      * Creates a nonogram of the given size.
      * 
-     * @param size
-     *            for the nonogram, will be n height and weight.
+     * @param size for the nonogram, will be n height and weight.
      */
     public Nonogram(int size) {
 	if (size > 0) {
@@ -98,10 +101,8 @@ public class Nonogram {
     /**
      * Adds a vertical restriction to the board.
      * 
-     * @param possition
-     *            where the vertical restriction is.
-     * @param resttriction
-     *            itself.
+     * @param possition where the vertical restriction is.
+     * @param resttriction itself.
      */
     public void addVerticalRestriction(int pos, int rest) {
 	ArrayList<Integer> aux = verticalRestrictions.get(pos);
@@ -117,10 +118,8 @@ public class Nonogram {
     /**
      * Adds an horizontal restriction to the board.
      * 
-     * @param possition
-     *            where the horizontal restriction is.
-     * @param resttriction
-     *            itself.
+     * @param possition where the horizontal restriction is.
+     * @param resttriction itself.
      */
     public void addHorizontalRestriction(int pos, int rest) {
 	ArrayList<Integer> aux = horizontalRestrictions.get(pos);
@@ -145,17 +144,69 @@ public class Nonogram {
 	System.out.println("FAIL. NOT IMPLEMENTED YET");
     }
 
+    public void backtracking(int x, int y) {
+	if (x == size) {
+	    this.wasFound = true;
+	    saveState();
+	} else {
+	    for(int k = 1; k <= size; k++) {
+		if(!this.wasFound) {
+		    
+		}
+	    }
+	}
+    }
+
+    protected void placeSlot(int x, int y, int blockSize) {
+	for (int i = 0; i < blockSize; i++) {
+	    board[x][y + i] = true;
+	}
+    }
+
+    protected void unplaceSlot(int x, int y, int blockSize) {
+	for (int i = 0; i < blockSize; i++) {
+	    board[x][y + i] = false;
+	}
+    }
+
+    protected boolean isMovementPossible(int x, int y, int blockSize) {
+	boolean aux = false;
+
+	return aux;
+    }
+
+    protected boolean checkColum(int x) {
+	for (int j = 0; j < verticalRestrictions.get(x).size(); j++) {
+	    
+	}
+	return true;
+    }
+
+    protected boolean checkConstraint(int x, int y, int blockSize) {
+	int counter = 0;
+	for (int index = y; index < board.length; index++) {
+	    if (board[x][index])
+		counter++;
+	    else
+		counter = 0;
+	}
+	return true;
+    }
+
+    private void saveState() {
+	this.solution = Arrays.copy(board);
+    }
+
     /**
      * Loads the data onto the system.
      * 
      * @format first row is the size and then will have size rows with the
      *         horizontal restrictions and size rows with the vertical
      *         restrictions.
-     * @param fileName,
-     *            name of the file where data is stored.
+     * @param fileName, name of the file where data is stored.
      * @return a nonogram containing all the previous loaded data.
-     * @throws IOException
-     *             if any problem while creating the file or reading it occurs.
+     * @throws IOException if any problem while creating the file or reading it
+     *             occurs.
      */
     @SuppressWarnings("resource")
     public static Nonogram loadData(String fileName) throws IOException {
