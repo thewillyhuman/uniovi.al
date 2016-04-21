@@ -15,15 +15,17 @@ public class Nonogram {
     private List<ArrayList<Integer>> horizontalRestrictions;
     private boolean[][] board;
     private boolean[][] solution;
-    private boolean wasFound;
+    private boolean wasFound = false;
+
+    List<List<Boolean>> CompleteResult = new ArrayList<List<Boolean>>();
+    List<Boolean> partialResult = new ArrayList<Boolean>();
 
     public static final String PATH_IN = "com/guille/al/files/in/lab_8/";
 
     /**
      * Creates a nonogram of the given size.
      * 
-     * @param size
-     *            for the nonogram, will be n height and weight.
+     * @param size for the nonogram, will be n height and weight.
      */
     public Nonogram(int size) {
 	if (size > 0) {
@@ -104,10 +106,8 @@ public class Nonogram {
     /**
      * Adds a vertical restriction to the board.
      * 
-     * @param possition
-     *            where the vertical restriction is.
-     * @param resttriction
-     *            itself.
+     * @param possition where the vertical restriction is.
+     * @param resttriction itself.
      */
     public void addVerticalRestriction(int pos, int rest) {
 	ArrayList<Integer> aux = verticalRestrictions.get(pos);
@@ -123,10 +123,8 @@ public class Nonogram {
     /**
      * Adds an horizontal restriction to the board.
      * 
-     * @param possition
-     *            where the horizontal restriction is.
-     * @param resttriction
-     *            itself.
+     * @param possition where the horizontal restriction is.
+     * @param resttriction itself.
      */
     public void addHorizontalRestriction(int pos, int rest) {
 	ArrayList<Integer> aux = horizontalRestrictions.get(pos);
@@ -146,17 +144,17 @@ public class Nonogram {
 	System.out.println("--- SOLUTION ---");
 	for (int i = 0; i < this.size; i++) {
 	    for (int j = 0; j < this.size; j++) {
-		if(solution[i][j] == true)
-		    System.out.print("X\t");
+		if (solution[i][j] == true)
+		    System.out.print("X ");
 		else
-		    System.out.print("\t");
-		
-		if(j == this.size-1)
+		    System.out.print("  ");
+
+		if (j == this.size - 1)
 		    System.out.println();
 	    }
 	}
     }
-    
+
     /**
      * Prints the board.
      */
@@ -164,12 +162,12 @@ public class Nonogram {
 	System.out.println("--- BOARD ---");
 	for (int i = 0; i < this.size; i++) {
 	    for (int j = 0; j < this.size; j++) {
-		if(board[i][j] == true)
+		if (board[i][j] == true)
 		    System.out.print("X\t");
 		else
 		    System.out.print("\t");
-		
-		if(j == this.size-1)
+
+		if (j == this.size - 1)
 		    System.out.println();
 	    }
 	}
@@ -177,30 +175,83 @@ public class Nonogram {
 
     /**
      * NOT IMPLEMENTED YED :((((((((((((
+     * 
      * @param x
      * @param y
      */
-    public void backtracking(int x, int y) {
-	if (x == size && y == size) {
-	    this.wasFound = true;
-	    saveState();
+    public void backtracking(int x) {
+	if (x == size) {
+	    boolean check = false;
+	    for(int i = 0; i < size; i++) {
+		check = checkcolumn(i) && checkRow(i);
+	    }
+	    if(check) {
+		this.wasFound = true;
+		saveState();
+	    }
 	} else {
-	    for (int k = 1; k <= size; k++) {
 
-		if (!this.wasFound && checkPartialRow(x) && checkPartialRow(x)) {
-		    // placeSlot(x, y, blockSize);
-		    // backtracking( , );
-		    // unplaceSlot(x, y, blockSize);
+	    CompleteResult = new ArrayList<List<Boolean>>();
+	    generateSolutions(new String(), size, x);
+	    List<List<Boolean>> rowSolutions = CompleteResult;
+	    
+	    for(List<Boolean> solution : rowSolutions) {
+		for(int i = 0; i < solution.size(); i++) {
+		    board[x][i] = solution.get(i);
+		    
+		    if(checkPartialcolumn(i) && checkPartialRow(x)) {
+			backtracking(x+1);
+		    }
+		    
+		    board[x][i] = solution.get(i);
 		}
 	    }
+	}
+    }
+
+    public boolean calculate() {
+	backtracking(0);
+	return wasFound;
+    }
+
+    private List<List<Boolean>> rowSolutions(int row) {
+	List<List<Boolean>> CompleteResult = new ArrayList<List<Boolean>>();
+	List<Boolean> partialResult = new ArrayList<Boolean>();
+	List<Integer> restictions = horizontalRestrictions.get(row);
+
+	for (Integer i : restictions) {
+
+	}
+	return null;
+
+    }
+
+    public void generateSolutions(String soFar, int size, int row) {
+	if (size == 0) {
+	    //System.out.println(soFar);
+	    char[] parts = soFar.toCharArray();
+	    for (int i = 0; i < parts.length; i++) {
+		if (parts[i] == '1')
+		    partialResult.add(true);
+		else
+		    partialResult.add(false);
+	    }
+	    
+	    if(this.checkRow(partialResult, row))
+		CompleteResult.add(partialResult);
+	    
+	    partialResult = new ArrayList<Boolean>();
+	    //System.out.println();
+	} else {
+	    generateSolutions(soFar + "0", size - 1, row);
+	    generateSolutions(soFar + "1", size - 1, row);
 	}
     }
 
     /**
      * Gets an array containing the slots in the row
      * 
-     * @param x
-     *            coordinate indicates the row.
+     * @param x coordinate indicates the row.
      * @return an array of integers containing the slots in the row. Example
      *         [1,2] means 2 slots, one of 1 element and another of 2 elements.
      */
@@ -222,12 +273,37 @@ public class Nonogram {
 	}
 	return aux;
     }
+    
+    /**
+     * Gets an array containing the slots in the row
+     * 
+     * @param x coordinate indicates the row.
+     * @return an array of integers containing the slots in the row. Example
+     *         [1,2] means 2 slots, one of 1 element and another of 2 elements.
+     */
+    public List<Integer> lookForTruesRow(List<Boolean> row, int x) {
+	List<Integer> aux = new ArrayList<Integer>();
+	int counter = 0;
+	for (int i = 0; i < row.size(); i++) {
+	    if (row.get(i) == true) {
+		counter++;
+	    } else if (row.get(i) == false) {
+		if (counter != 0)
+		    aux.add(counter);
+		counter = 0;
+	    }
+
+	    if (i == (row.size() - 1) && row.get(i) == true) {
+		aux.add(counter);
+	    }
+	}
+	return aux;
+    }
 
     /**
      * Gets an array containing the slots in the column
      * 
-     * @param y
-     *            coordinate indicates the row.
+     * @param y coordinate indicates the row.
      * @return an array of integers containing the slots in the column. Example
      *         [1,2] means 2 slots, one of 1 element and another of 2 elements.
      */
@@ -253,8 +329,7 @@ public class Nonogram {
     /**
      * Check a complete row.
      * 
-     * @param x
-     *            is the row coordinate to complete.
+     * @param x is the row coordinate to complete.
      * @return true if correct. False otherwise.
      */
     public boolean checkRow(int x) {
@@ -269,12 +344,30 @@ public class Nonogram {
 	}
 	return true;
     }
+    
+    /**
+     * Check a complete row.
+     * 
+     * @param x is the row coordinate to complete.
+     * @return true if correct. False otherwise.
+     */
+    public boolean checkRow(List<Boolean> row, int x) {
+	List<Integer> aux = lookForTruesRow(row, x);
+	if (horizontalRestrictions.get(x).size() != aux.size()) {
+	    return false;
+	}
+	for (int i = 0; i < aux.size(); i++) {
+	    if (horizontalRestrictions.get(x).get(i) != aux.get(i)) {
+		return false;
+	    }
+	}
+	return true;
+    }
 
     /**
      * Check a complete column.
      * 
-     * @param y
-     *            is the row coordinate to complete.
+     * @param y is the row coordinate to complete.
      * @return true if correct. False otherwise.
      */
     public boolean checkcolumn(int y) {
@@ -293,8 +386,7 @@ public class Nonogram {
     /**
      * Check a partial row.
      * 
-     * @param x
-     *            is the row coordinate to complete.
+     * @param x is the row coordinate to complete.
      * @return true if correct. False otherwise.
      */
     public boolean checkPartialRow(int x) {
@@ -313,8 +405,7 @@ public class Nonogram {
     /**
      * Check a partial column.
      * 
-     * @param y
-     *            is the row coordinate to complete.
+     * @param y is the row coordinate to complete.
      * @return true if correct. False otherwise.
      */
     public boolean checkPartialcolumn(int y) {
@@ -334,12 +425,9 @@ public class Nonogram {
      * Places a slot of any size in the specified position. Notice the block
      * will be placed by row.
      * 
-     * @param x
-     *            coordinate
-     * @param y
-     *            coordinate
-     * @param blockSize
-     *            represents how many block will take the slot.
+     * @param x coordinate
+     * @param y coordinate
+     * @param blockSize represents how many block will take the slot.
      */
     public void placeSlot(int x, int y, int blockSize) {
 	for (int i = 0; i < blockSize; i++) {
@@ -350,12 +438,9 @@ public class Nonogram {
     /**
      * Unplaces an slot.
      * 
-     * @param x
-     *            coordinate
-     * @param y
-     *            coordinate
-     * @param blockSize
-     *            represents how many block will take the slot.
+     * @param x coordinate
+     * @param y coordinate
+     * @param blockSize represents how many block will take the slot.
      */
     protected void unplaceSlot(int x, int y, int blockSize) {
 	for (int i = 0; i < blockSize; i++) {
@@ -366,12 +451,9 @@ public class Nonogram {
     /**
      * Checks whether or not is possible to perform a movement.
      *
-     * @param x
-     *            coordinate
-     * @param y
-     *            coordinate
-     * @param blockSize
-     *            represents how many block will take the slot.
+     * @param x coordinate
+     * @param y coordinate
+     * @param blockSize represents how many block will take the slot.
      * @return true if possible, false otherwise.
      */
     public boolean isMovementPossible(int x, int y, int blockSize) {
@@ -413,11 +495,10 @@ public class Nonogram {
      * @format first row is the size and then will have size rows with the
      *         horizontal restrictions and size rows with the vertical
      *         restrictions.
-     * @param fileName,
-     *            name of the file where data is stored.
+     * @param fileName, name of the file where data is stored.
      * @return a nonogram containing all the previous loaded data.
-     * @throws IOException
-     *             if any problem while creating the file or reading it occurs.
+     * @throws IOException if any problem while creating the file or reading it
+     *             occurs.
      */
     @SuppressWarnings("resource")
     public static Nonogram loadData(String fileName) throws IOException {

@@ -2,9 +2,11 @@ package com.guille.al.labs.lab_7;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+
 import org.junit.Test;
 
 /**
@@ -73,6 +75,7 @@ public class RoadsInCityTest {
 	assertEquals(-1, result);
     }
 
+    @SuppressWarnings("resource")
     private long executeFromFile(String file) {
 	long result = 0;
 	// Input
