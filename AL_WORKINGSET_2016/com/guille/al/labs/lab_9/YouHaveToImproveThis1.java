@@ -33,7 +33,7 @@ public class YouHaveToImproveThis1 {
 	long t1 = System.currentTimeMillis();
 	backtracking(0);
 	long t2 = System.currentTimeMillis();
-	System.out.println("TIME IN MILISECONDS=" + (t2 - t1));
+	System.out.println("TIME IN MILISECONDS = " + (t2 - t1));
     }
 
     static void backtracking(int level) {
