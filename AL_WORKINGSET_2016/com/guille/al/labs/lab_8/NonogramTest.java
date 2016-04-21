@@ -2,11 +2,13 @@ package com.guille.al.labs.lab_8;
 
 import static org.junit.Assert.*;
 import java.io.IOException;
+
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class NonogramTest {
 
-    @Test
+    @Test @Ignore("Not implemented yet")
     public void testLoadCases() throws IOException {
 	Nonogram nonogram = Nonogram.loadData("case1.txt");
 	assertNotEquals(null, nonogram);
@@ -27,6 +29,19 @@ public class NonogramTest {
 	nonogram = Nonogram.loadData("case5.txt");
 	assertNotEquals(null, nonogram);
 	assertEquals(25, nonogram.getSize());
+    }
+    
+    @Test
+    public void checkRowTest() throws IOException {
+	Nonogram nonogram = Nonogram.loadData("case1.txt");
+	assertNotEquals(null, nonogram);
+	assertEquals(5, nonogram.getSize());
+	
+	for(int i = 0; i < 3; i++) {
+	    nonogram.placeSlot(0, i, 1);
+	    assertEquals(true, nonogram.checkPartialRow(0));
+	}
+	
     }
 
 }
