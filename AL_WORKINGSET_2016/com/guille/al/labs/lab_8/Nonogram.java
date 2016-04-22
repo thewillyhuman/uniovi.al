@@ -50,16 +50,12 @@ public class Nonogram {
 	    if (counter <= nonogram.size + 1) {
 		parts = line.split(" ");
 		for (int i = 0; i < parts.length; i++) {
-		    // System.out.println("HR--> Added to index " + (counter-2)
-		    // + " the value " + parts[i]);
 		    nonogram.addHorizontalRestriction(counter - 2, Integer.parseInt(parts[i]));
 		}
 
 	    } else {
 		parts = line.split(" ");
 		for (int i = 0; i < parts.length; i++) {
-		    // System.out.println("VR--> Added to index " +
-		    // (counter-nonogram.size-2) + " the value " + parts[i]);
 		    nonogram.addVerticalRestriction(counter - nonogram.size - 2, Integer.parseInt(parts[i]));
 		}
 	    }
