@@ -38,19 +38,23 @@ public class NonogramTest {
 	/*
 	 * if(nonogram.calculate()) nonogram.printSolution();
 	 */
+	long t1 = System.currentTimeMillis();
 	assertEquals(true, nonogram.calculate());
+	long t2 = System.currentTimeMillis();
 	nonogram.printSolution();
-	System.out.println("Case 1 generates: " + nonogram.calls + " calls.");
+	System.out.println("Case 1 generates: " + nonogram.getCalls() + " calls. And takes " + (t2-t1) + " ms.");
     }
 
-    @Test @Ignore("Takes to long")
+    @Test
     public void case2Test() throws IOException {
 	Nonogram nonogram = Nonogram.loadData("case2.txt");
 	nonogram.print();
 
-	if (nonogram.calculate())
-	    nonogram.printSolution();
+	long t1 = System.currentTimeMillis();
 	assertEquals(true, nonogram.calculate());
+	long t2 = System.currentTimeMillis();
+	nonogram.printSolution();
+	System.out.println("Case 2 generates: " + nonogram.getCalls() + " calls. And takes " + (t2-t1) + " ms.");
     }
     
     @Test @Ignore("Takes to long")
@@ -58,9 +62,11 @@ public class NonogramTest {
 	Nonogram nonogram = Nonogram.loadData("case3.txt");
 	nonogram.print();
 
-	if (nonogram.calculate())
-	    nonogram.printSolution();
+	long t1 = System.currentTimeMillis();
 	assertEquals(true, nonogram.calculate());
+	long t2 = System.currentTimeMillis();
+	nonogram.printSolution();
+	System.out.println("Case 3 generates: " + nonogram.getCalls() + " calls. And takes " + (t2-t1) + " ms.");
     }
     
     @Test @Ignore("Takes to long")
@@ -68,9 +74,11 @@ public class NonogramTest {
 	Nonogram nonogram = Nonogram.loadData("case4.txt");
 	nonogram.print();
 
-	if (nonogram.calculate())
-	    nonogram.printSolution();
+	long t1 = System.currentTimeMillis();
 	assertEquals(true, nonogram.calculate());
+	long t2 = System.currentTimeMillis();
+	nonogram.printSolution();
+	System.out.println("Case 4 generates: " + nonogram.getCalls() + " calls. And takes " + (t2-t1) + " ms.");
     }
     
     @Test @Ignore("Takes to long")
@@ -78,9 +86,11 @@ public class NonogramTest {
 	Nonogram nonogram = Nonogram.loadData("case5.txt");
 	nonogram.print();
 
-	if (nonogram.calculate())
-	    nonogram.printSolution();
+	long t1 = System.currentTimeMillis();
 	assertEquals(true, nonogram.calculate());
+	long t2 = System.currentTimeMillis();
+	nonogram.printSolution();
+	System.out.println("Case 5 generates: " + nonogram.getCalls() + " calls. And takes " + (t2-t1) + " ms.");
     }
 
 }
