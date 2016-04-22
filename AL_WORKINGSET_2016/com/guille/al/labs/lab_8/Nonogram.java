@@ -5,7 +5,11 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import com.guille.util.Arrays;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+import com.guille.util.ArraysImproved;
+import java.util.Arrays;
 
 public class Nonogram {
 
@@ -168,9 +172,9 @@ public class Nonogram {
 	for (int i = 0; i < this.size; i++) {
 	    for (int j = 0; j < this.size; j++) {
 		if (board[i][j] == true)
-		    System.out.print("X\t");
+		    System.out.print("X ");
 		else
-		    System.out.print("\t");
+		    System.out.print("  ");
 
 		if (j == this.size - 1)
 		    System.out.println();
@@ -199,9 +203,7 @@ public class Nonogram {
 	    }
 	} else {
 
-	    CompleteResult = new ArrayList<List<Boolean>>();
-	    generateSolutions(new String(), size, x);
-	    List<List<Boolean>> rowSolutions = CompleteResult;
+	    List<List<Boolean>> rowSolutions = filterRow(CompleteResult, x);
 
 	    for (List<Boolean> solution : rowSolutions) {
 		for (int i = 0; i < solution.size(); i++) {
@@ -221,6 +223,7 @@ public class Nonogram {
      * @return true if was solved, false otherwise.
      */
     public boolean calculate() {
+	generateSolutions(new String(), this.size);
 	backtracking(0);
 	return wasFound;
     }
@@ -228,11 +231,14 @@ public class Nonogram {
     /**
      * Generates a solution set for a given row.
      * 
-     * @param soFar just new String();
-     * @param size of the row.
-     * @param row index.
+     * @param soFar
+     *            just new String();
+     * @param size
+     *            of the row.
+     * @param row
+     *            index.
      */
-    public void generateSolutions(String soFar, int size, int row) {
+    public void generateSolutions(String soFar, int size) {
 	if (size == 0) {
 	    // System.out.println(soFar);
 	    char[] parts = soFar.toCharArray();
@@ -243,15 +249,28 @@ public class Nonogram {
 		    partialResult.add(false);
 	    }
 
-	    if (this.checkRow(partialResult, row))
-		CompleteResult.add(partialResult);
+	   CompleteResult.add(partialResult);
 
 	    partialResult = new ArrayList<Boolean>();
 	    // System.out.println();
 	} else {
-	    generateSolutions(soFar + "0", size - 1, row);
-	    generateSolutions(soFar + "1", size - 1, row);
+	    generateSolutions(soFar + "0", size - 1);
+	    generateSolutions(soFar + "1", size - 1);
 	}
+    }
+    
+    /**
+     * Filters a given row.
+     * 
+     * @param toFilter
+     * @param row
+     * @return the list filtered.
+     */
+    public List<List<Boolean>> filterRow(List<List<Boolean>> toFilter, int row) {
+	List<List<Boolean>> aux = new ArrayList<List<Boolean>>();
+	for(List<Boolean> r : toFilter) {
+	    if(this.checkRow(r, row)) aux.add(r);
+	} return aux;
     }
 
     /**
@@ -439,7 +458,7 @@ public class Nonogram {
      * Saves the status.
      */
     private void saveStatus() {
-	this.solution = Arrays.copy(board);
+	this.solution = ArraysImproved.copy(board);
     }
 
     /**

@@ -1,6 +1,6 @@
 package com.guille.util;
 
-public class Arrays {
+public class ArraysImproved {
     
     public static <T> T[][] copy(T[][] matrix) {
 	T[][] aux = matrix;

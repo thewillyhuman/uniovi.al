@@ -35,16 +35,16 @@ public class NonogramTest {
     @Test
     public void case1Test() throws IOException {
 	Nonogram nonogram = Nonogram.loadData("case1.txt");
-	nonogram.print();
 
 	/*
 	 * if(nonogram.calculate()) nonogram.printSolution();
 	 */
 	assertEquals(true, nonogram.calculate());
+	nonogram.printSolution();
 	System.out.println("Case 1 generates: " + nonogram.calls + " calls.");
     }
 
-    @Test @Ignore
+    @Test @Ignore("Takes to long")
     public void case2Test() throws IOException {
 	Nonogram nonogram = Nonogram.loadData("case2.txt");
 	nonogram.print();
@@ -54,7 +54,7 @@ public class NonogramTest {
 	assertEquals(true, nonogram.calculate());
     }
     
-    @Test @Ignore
+    @Test @Ignore("Takes to long")
     public void case3Test() throws IOException {
 	Nonogram nonogram = Nonogram.loadData("case3.txt");
 	nonogram.print();
@@ -64,7 +64,7 @@ public class NonogramTest {
 	assertEquals(true, nonogram.calculate());
     }
     
-    @Test @Ignore
+    @Test @Ignore("Takes to long")
     public void case4est() throws IOException {
 	Nonogram nonogram = Nonogram.loadData("case4.txt");
 	nonogram.print();
@@ -74,7 +74,7 @@ public class NonogramTest {
 	assertEquals(true, nonogram.calculate());
     }
     
-    @Test @Ignore
+    @Test @Ignore("Takes to long")
     public void case5Test() throws IOException {
 	Nonogram nonogram = Nonogram.loadData("case5.txt");
 	nonogram.print();
@@ -82,22 +82,6 @@ public class NonogramTest {
 	if (nonogram.calculate())
 	    nonogram.printSolution();
 	assertEquals(true, nonogram.calculate());
-    }
-
-    @Test @Ignore
-    public void printBinTest() throws IOException {
-	Nonogram nonogram = Nonogram.loadData("case2.txt");
-	// nonogram.printBin(new ArrayList<Boolean>(), 4);
-
-	for (int i = 0; i < 1000; i++) {
-	    nonogram.generateSolutions(new String(), nonogram.getSize(), 0);
-	    for (List<Boolean> list : nonogram.CompleteResult) {
-		for (Boolean bol : list) {
-		    System.out.print(bol + " ");
-		}
-		System.out.println();
-	    }
-	}
     }
 
 }
