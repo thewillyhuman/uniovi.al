@@ -75,7 +75,6 @@ public class RoadsInCityTest {
 	assertEquals(-1, result);
     }
 
-    @SuppressWarnings("resource")
     private long executeFromFile(String file) {
 	long result = 0;
 	// Input
