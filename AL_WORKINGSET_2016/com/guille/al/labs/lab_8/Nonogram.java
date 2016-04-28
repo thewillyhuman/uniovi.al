@@ -156,6 +156,7 @@ public class Nonogram {
 		    board[x][i] = solution.get(i);
 		    if (!wasFound && checkPartialColumn(i) && checkRow(x))
 			backtracking(x + 1);
+		    // board[x][i] = false;
 		}
 	    }
 	}
