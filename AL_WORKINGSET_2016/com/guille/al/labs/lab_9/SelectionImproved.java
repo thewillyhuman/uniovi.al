@@ -5,6 +5,19 @@ import java.util.ArrayList;
 import com.guille.al.labs.lab_9.util.BranchAndBound;
 import com.guille.al.labs.lab_9.util.Node;
 
+/**
+ * ..IMPROVE THAT..
+ * PROBLEM : From n positive integer elements (>0), take
+ * k elements that sum a given amount c
+ * Develop the tree of states with backtracking with 3 prunings
+ * (taken<k) => we should stop if we took k elements
+ * (sum<c) => we should stop if we reach or exceed c. Note that all the elements are positive >0
+ * (n-level>=k-taken) => we should stop if the number of elements to be processed is < 
+ * than the remaining elements to complete K, since we are not going to reach k elements
+ * 
+ * @author Guillermo Facundo Colunga
+ *
+ */
 public class SelectionImproved extends BranchAndBound {
 
     /**
