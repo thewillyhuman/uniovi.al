@@ -24,11 +24,11 @@ public class SelectionImproved extends BranchAndBound {
 
     class State extends Node {
 
-	int numberOfElements;
-	int keys;
-	int sum;
-	int partialSum;
-	int[] vector;
+	int numberOfElements; // The number of elements in the vector.
+	int keys; // The number of keys we will choose.
+	int sum; // The final sum we have to achieve.
+	int partialSum; // The partial sum at this level of the tree.
+	int[] vector; // the whole vector containing all the keys.
 
 	/**
 	 * Constructor for the first state / node.
@@ -84,7 +84,7 @@ public class SelectionImproved extends BranchAndBound {
 	    StringBuilder sb = new StringBuilder();
 	    sb.append("============");
 	    for (int i = 0; i < this.numberOfElements; i++) {
-		if(vector[i] != 0) {
+		if (vector[i] != 0) {
 		    sb.append("THE STATE: n = " + i + " THAT IS key = "
 			    + this.vector[i] + " IS PARTIAL SOLUTION");
 		}
@@ -105,7 +105,8 @@ public class SelectionImproved extends BranchAndBound {
 	@Override
 	public ArrayList<Node> expand() {
 	    ArrayList<Node> result = new ArrayList<Node>();
-	    if (this.partialSum <= this.sum && this.depth <= this.keys && depth < this.numberOfElements) {
+	    if (this.partialSum <= this.sum && this.depth <= this.keys
+		    && depth < this.numberOfElements) {
 		Node child = new State(this, depth);
 		result.add(child);
 	    }
