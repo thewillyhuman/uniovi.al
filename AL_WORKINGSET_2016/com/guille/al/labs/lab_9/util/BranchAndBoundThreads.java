@@ -14,13 +14,13 @@ import com.guille.anotations.Beta;
  */
 @Beta
 public class BranchAndBoundThreads {
-    // private static Logger log =
-    // LoggerFactory.getLogger(BranchAndBoundThreads.class);
-    protected static HeapThreads ds; // Nodes to be explored (not used nodes)
     protected static Node bestNode; // To save the final node of the best
-				    // solution
-    protected static Node rootNode; // Initial node
+				    // private static Logger log =
+				    // LoggerFactory.getLogger(BranchAndBoundThreads.class);
+    protected static HeapThreads ds; // Nodes to be explored (not used nodes)
     protected static int pruneLimit; // To prune nodes above this value
+				     // solution.
+    protected static Node rootNode; // Initial node
 
     /**
      * Constructor for BrancAndBount objects
@@ -69,21 +69,21 @@ public class BranchAndBoundThreads {
     }
 
     /**
-     * Gets the root node
-     * 
-     * @return The root node
-     */
-    public Node getRootNode() {
-	return rootNode;
-    }
-
-    /**
      * Gets the best node
      * 
      * @return The best node
      */
     public Node getBestNode() {
 	return bestNode;
+    }
+
+    /**
+     * Gets the root node
+     * 
+     * @return The root node
+     */
+    public Node getRootNode() {
+	return rootNode;
     }
 
     /**

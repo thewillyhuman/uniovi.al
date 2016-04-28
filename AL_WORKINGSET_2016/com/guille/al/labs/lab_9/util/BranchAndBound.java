@@ -9,12 +9,11 @@ import java.util.ArrayList;
  * @author viceg
  */
 public class BranchAndBound {
-    // private static Logger log =
-    // LoggerFactory.getLogger(BranchAndBound.class);
-    protected Heap ds; // Nodes to be explored (not used nodes)
+
     protected Node bestNode; // To save the final node of the best solution
-    protected Node rootNode; // Initial node
+    protected Heap ds; // Nodes to be explored (not used nodes)
     protected int pruneLimit; // To prune nodes above this value
+    protected Node rootNode; // Initial node
 
     /**
      * Constructor for BrancAndBount objects
@@ -54,21 +53,21 @@ public class BranchAndBound {
     }
 
     /**
-     * Gets the root node
-     * 
-     * @return The root node
-     */
-    public Node getRootNode() {
-	return rootNode;
-    }
-
-    /**
      * Gets the best node
      * 
      * @return The best node
      */
     public Node getBestNode() {
 	return bestNode;
+    }
+
+    /**
+     * Gets the root node
+     * 
+     * @return The root node
+     */
+    public Node getRootNode() {
+	return rootNode;
     }
 
     /**

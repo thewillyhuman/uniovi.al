@@ -27,6 +27,34 @@ public abstract class Node implements Comparable<Node> {
 	ID = UUID.randomUUID();
     }
 
+    public abstract void calculateHeuristicValue();
+
+    @Override
+    public int compareTo(Node node) { // BRANCHING METHOD
+	int totalValue = heuristicValue;
+	int totalValueToBeCompared = node.getHeuristicValue();
+
+	if (totalValue > totalValueToBeCompared)
+	    return 1; // this has less priority (is bigger)
+	else if (totalValue == totalValueToBeCompared)
+	    return 0; // The same priority
+	else
+	    return -1; // this has more priority (is smaller)
+    }
+
+    /**
+     * Compares whether two nodes are equal using the ToString method
+     * 
+     * @param n
+     *            Another node to be compared with
+     * @return True if there are equal. False otherwise
+     */
+    public boolean equals(Node n) {
+	return (n.toString().equals(toString()));
+    }
+
+    public abstract ArrayList<Node> expand();
+
     /**
      * Getter for depth
      * 
@@ -46,14 +74,12 @@ public abstract class Node implements Comparable<Node> {
     }
 
     /**
-     * Compares whether two nodes are equal using the ToString method
+     * Gets the ID of the node
      * 
-     * @param n
-     *            Another node to be compared with
-     * @return True if there are equal. False otherwise
+     * @return ID of the node
      */
-    public boolean equals(Node n) {
-	return (n.toString().equals(toString()));
+    public UUID getID() {
+	return ID;
     }
 
     /**
@@ -66,15 +92,6 @@ public abstract class Node implements Comparable<Node> {
     }
 
     /**
-     * Gets the ID of the node
-     * 
-     * @return ID of the node
-     */
-    public UUID getID() {
-	return ID;
-    }
-
-    /**
      * We can have extra information about the problem to prune all the nodes
      * above a specific heuristicValue. By default we know nothing, so we do not
      * prune anything
@@ -84,23 +101,6 @@ public abstract class Node implements Comparable<Node> {
     public int initialValuePruneLimit() {
 	return Integer.MAX_VALUE; // Implementation by default
     }
-
-    @Override
-    public int compareTo(Node node) { // BRANCHING METHOD
-	int totalValue = heuristicValue;
-	int totalValueToBeCompared = node.getHeuristicValue();
-
-	if (totalValue > totalValueToBeCompared)
-	    return 1; // this has less priority (is bigger)
-	else if (totalValue == totalValueToBeCompared)
-	    return 0; // The same priority
-	else
-	    return -1; // this has more priority (is smaller)
-    }
-
-    public abstract void calculateHeuristicValue();
-
-    public abstract ArrayList<Node> expand();
 
     public abstract boolean isSolution();
 }

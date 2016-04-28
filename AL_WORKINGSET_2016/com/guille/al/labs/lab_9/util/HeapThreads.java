@@ -37,28 +37,6 @@ public class HeapThreads {
     }
 
     /**
-     * Inserts a new node in the priority queue
-     * 
-     * @param node
-     *            Node to be inserted
-     */
-    public void insert(Node node) {
-	if (!nodeRepeated(node)) { // To not repeat used nodes and avoid
-				   // infinite loops (e.g., in the puzzle
-				   // problem)
-	    nodes.add(node);
-	}
-    }
-
-    private boolean nodeRepeated(Node node) {
-	for (Node n : usedNodes.values()) {
-	    if (node.equals(n))
-		return true;
-	}
-	return false;
-    }
-
-    /**
      * Checks whether the priority queue is empty
      * 
      * @return True if the queue is empty. False otherwise.
@@ -110,5 +88,27 @@ public class HeapThreads {
 	}
 
 	return result;
+    }
+
+    /**
+     * Inserts a new node in the priority queue
+     * 
+     * @param node
+     *            Node to be inserted
+     */
+    public void insert(Node node) {
+	if (!nodeRepeated(node)) { // To not repeat used nodes and avoid
+				   // infinite loops (e.g., in the puzzle
+				   // problem)
+	    nodes.add(node);
+	}
+    }
+
+    private boolean nodeRepeated(Node node) {
+	for (Node n : usedNodes.values()) {
+	    if (node.equals(n))
+		return true;
+	}
+	return false;
     }
 }
