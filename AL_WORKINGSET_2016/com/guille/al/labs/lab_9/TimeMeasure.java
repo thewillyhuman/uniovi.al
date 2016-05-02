@@ -8,8 +8,11 @@ public class TimeMeasure {
     
     @Test
     public void timeTest() {
-	SelectionImproved si = new SelectionImproved(5, 2, 3);
+	SelectionImproved si = new SelectionImproved(7, 3, 8);
+	t1 = System.currentTimeMillis();
 	si.branchAndBound(si.getRootNode());
-	System.out.println(si.getRootNode());
+	t2 = System.currentTimeMillis();
+	si.printSolutionTrace();
+	System.out.println("Finished in: " + (t2-t1) + " milliseconds.");
     }
 }

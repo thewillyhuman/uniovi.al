@@ -21,6 +21,7 @@ public class YouHaveToImpreveThis2 {
     static int sum; // cumulative sum in a state
     static int taken; // how many elements we chose
     static boolean solutionFound;
+    static int steps = 0;
 
     public static void main(String arg[]) {
 	n = Integer.parseInt(arg[0]);
@@ -40,10 +41,11 @@ public class YouHaveToImpreveThis2 {
 	long t1 = System.currentTimeMillis();
 	backtracking(0);
 	long t2 = System.currentTimeMillis();
-	System.out.println("TIME IN MILISECONDS=" + (t2 - t1));
+	System.out.println("TIME IN MILISECONDS=" + (t2 - t1) + " AND " + steps + " STEP(S).");
     }
 
     static void backtracking(int level) {
+	steps++;
 	if (taken == k && sum == c) {
 	    solutionFound = true;
 	    System.out.println();

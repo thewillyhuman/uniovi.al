@@ -75,22 +75,23 @@ public class BranchAndBound {
      */
     public void printSolutionTrace() {
 	if (bestNode == null) {
-	    // log.debug("Original:");
-	    // log.debug(rootNode.toString());
-	    // log.debug("THERE IS NO SOLUTION");
+	    System.out.println("Original:");
+	    System.out.println(rootNode.toString());
+	    System.out.println("THERE IS NO SOLUTION");
 	} else {
 	    // Extract the path of the used nodes from bestNode to the rootNode
 	    ArrayList<Node> result = ds.extractUsedNodesFrom(bestNode);
 
 	    for (int i = 0; i < result.size(); i++) {
-		/*
-		 * if (i == 0) log.debug("Original:"); else log.debug("Step " +
-		 * i + ":"); log.debug(result.get(result.size() - i -
-		 * 1).toString());
-		 */
+
+		if (i == 0)
+		    System.out.println("Original:");
+		else
+		    System.out.println("Step " + i + ":");
+		System.out.println(result.get(result.size() - i - 1).toString());
+
 	    }
-	    // log.debug("\nSolution with " + bestNode.getDepth() + "
-	    // step(s).");
+	    System.out.println("\nSolution with " + bestNode.getDepth() + "step(s).");
 	}
     }
 }

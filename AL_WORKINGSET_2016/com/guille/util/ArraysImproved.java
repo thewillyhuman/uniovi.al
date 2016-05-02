@@ -22,4 +22,15 @@ public class ArraysImproved {
 	} 
 	return aux;
     }
+
+    public static void printVector(int[] vector) {
+	StringBuilder sb = new StringBuilder();
+	sb.append("Vector: ");
+	for(Integer i : vector) {
+	    sb.append(i);
+	    sb.append("/");
+	}
+	System.out.println(sb.toString());
+	
+    }
 }
