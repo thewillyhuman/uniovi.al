@@ -8,7 +8,7 @@ public class TimeMeasure {
     
     @Test
     public void timeTest() {
-	SelectionImproved si = new SelectionImproved(7, 3, 8);
+	SelectionImproved si = new SelectionImproved(50, 25, 325);
 	t1 = System.currentTimeMillis();
 	si.branchAndBound(si.getRootNode());
 	t2 = System.currentTimeMillis();

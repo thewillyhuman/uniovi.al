@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import com.guille.al.labs.lab_9.util.BranchAndBound;
 import com.guille.al.labs.lab_9.util.Node;
-import com.guille.util.ArraysImproved;
+//import com.guille.util.ArraysImproved;
 
 /**
  * ..IMPROVE THAT.. PROBLEM : From n positive integer elements (>0), take k
@@ -68,9 +68,9 @@ public class SelectionImproved extends BranchAndBound {
 	    this.sum = parent.sum;
 	    this.vector = parent.vector.clone();
 	    this.partialSum = parent.partialSum;
-	    vector[depth] = vector[depth - 1] + 1 + j;
+	    vector[depth] = vector[depth - 1] + 1; // +j if not an iterative sum.
 	    this.partialSum += vector[depth];
-	    ArraysImproved.printVector(vector);
+	    //ArraysImproved.printVector(vector);
 
 	    // Update the heuristic value.
 	    calculateHeuristicValue();
