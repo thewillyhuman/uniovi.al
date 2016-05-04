@@ -3,7 +3,7 @@ package com.guille.al.labs.lab_1;
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
 
-import com.guille.util.Files;
+import com.guille.util.FilesImproved;
 
 /**
  * This program serves to measure times automatically increasing the size of the
@@ -65,7 +65,7 @@ public class Vector4 {
 	    System.out.println(res);
 	}// for
 	try {
-	    Files.writeFileFromString(PATH, FILE_NAME, toFile.toString(), ".csv", Files.UTF_8);
+	    FilesImproved.writeFileFromString(PATH, FILE_NAME, toFile.toString(), ".csv", FilesImproved.UTF_8);
 	} catch (FileNotFoundException e) {
 	    e.printStackTrace();
 	} catch (UnsupportedEncodingException e) {

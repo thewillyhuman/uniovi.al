@@ -3,7 +3,7 @@ package com.guille.al.labs.lab_2;
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
 
-import com.guille.util.Files;
+import com.guille.util.FilesImproved;
 
 public class TimeCalculator {
 
@@ -82,7 +82,7 @@ public class TimeCalculator {
 	    toFile.append(n + COLUM_SEPARATOR + ((float)totalLoop1/LOOP_1_FACTOR) + COLUM_SEPARATOR + ((float)totalLoop2/LOOP_2_FACTOR) + COLUM_SEPARATOR + ((float)totalLoop3/LOOP_3_FACTOR) + COLUM_SEPARATOR + ((float)totalLoop4/LOOP_4_FACTOR) + COLUM_SEPARATOR + ((float)totalLoop5/LOOP_5_FACTOR) + COLUM_SEPARATOR + ((float)totalLoopUnk/LOOP_UNKNOWN) + "\n");
 	}
 	try {
-	    Files.writeFileFromString(PATH, FILE_NAME, toFile.toString(), ".csv", Files.UTF_8);
+	    FilesImproved.writeFileFromString(PATH, FILE_NAME, toFile.toString(), ".csv", FilesImproved.UTF_8);
 	} catch (FileNotFoundException e) {
 	    e.printStackTrace();
 	} catch (UnsupportedEncodingException e) {

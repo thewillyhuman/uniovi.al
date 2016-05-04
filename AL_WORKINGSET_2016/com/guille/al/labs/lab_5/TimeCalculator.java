@@ -6,7 +6,7 @@ import java.util.List;
 
 import com.guille.al.labs.lab_3.QuicksortCentralElement;
 import com.guille.al.labs.lab_3.Vector;
-import com.guille.util.Files;
+import com.guille.util.FilesImproved;
 
 
 public class TimeCalculator {
@@ -107,7 +107,7 @@ public class TimeCalculator {
 	}
 	
 	for(int i = 0; i < files.size(); i++) {
-	    Files.writeFileFromString(PATH, FILE_NAMES[i], files.get(i).toString(), ".csv", Files.UTF_8);
+	    FilesImproved.writeFileFromString(PATH, FILE_NAMES[i], files.get(i).toString(), ".csv", FilesImproved.UTF_8);
 	}
 	
 	System.out.println("*** ALL FINISHED ***");

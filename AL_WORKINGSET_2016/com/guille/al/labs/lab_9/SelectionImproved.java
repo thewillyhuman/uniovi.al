@@ -68,9 +68,10 @@ public class SelectionImproved extends BranchAndBound {
 	    this.sum = parent.sum;
 	    this.vector = parent.vector.clone();
 	    this.partialSum = parent.partialSum;
-	    vector[depth] = vector[depth - 1] + 1; // +j if not an iterative sum.
+	    vector[depth] = vector[depth - 1] + 1; // +j if not an iterative
+						   // sum.
 	    this.partialSum += vector[depth];
-	    //ArraysImproved.printVector(vector);
+	    // ArraysImproved.printVector(vector);
 
 	    // Update the heuristic value.
 	    calculateHeuristicValue();
@@ -86,7 +87,7 @@ public class SelectionImproved extends BranchAndBound {
 	    ArrayList<Node> result = new ArrayList<Node>();
 	    if (this.partialSum < this.sum && this.depth < this.keys && depth < this.numberOfElements) {
 		int counter = 0;
-		for (int i = vector[depth]+1; i <= this.numberOfElements; i++) {
+		for (int i = vector[depth] + 1; i <= this.numberOfElements; i++) {
 		    Node child = new State(this, counter);
 		    result.add(child);
 		    counter++;

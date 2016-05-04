@@ -2,51 +2,22 @@ package com.guille.al.labs.lab_7;
 
 public class CitySimple {
 
-    long solution[][]; // Will represent the problem and finally the solution.
-    private int width; // Width of the problem.
-    private int height; // Height of the problem.
-    private int originCoordinate[] = new int[2]; // Coordinates of the origin.
-						 // This allow us to access it
-						 // directly.
+    private static final int BARRIER = -1;
+    // This allow us to access it directly.
     private int destinationCoordinate[] = new int[2]; // Coordinates of the
 						      // destination. This allow
 						      // us to access it
 						      // directly.
+    private int height; // Height of the problem.
+    private int originCoordinate[] = new int[2]; // Coordinates of the origin.
+    long solution[][]; // Will represent the problem and finally the solution.
 
-    private static final int BARRIER = -1;
+    private int width; // Width of the problem.
 
     public CitySimple(int width, int heigth) {
 	this.width = width - 1;
 	this.height = heigth - 1;
 	solution = new long[width][heigth];
-    }
-
-    /**
-     * Sets the origin at the coordinate x and y.
-     * 
-     * @param x
-     *            coordinate of the origin.
-     * @param y
-     *            coordinate of the origin.
-     */
-    public void setOrigin(int x, int y) {
-	checkCoordinate(x, y);
-	originCoordinate[0] = x;
-	originCoordinate[1] = y;
-    }
-
-    /**
-     * Sets the destination at the x / y coordinate.
-     * 
-     * @param x
-     *            coordinate of the destination.
-     * @param y
-     *            coordinate of the destination.
-     */
-    public void setDestination(int x, int y) {
-	checkCoordinate(x, y);
-	destinationCoordinate[0] = x;
-	destinationCoordinate[1] = y;
     }
 
     /**
@@ -60,34 +31,6 @@ public class CitySimple {
     public void addObstacle(int x, int y) {
 	checkCoordinate(x, y);
 	solution[x][y] = BARRIER;
-    }
-
-    /**
-     * Performs a simple test to check if a coordinate is valid.
-     * 
-     * @param x
-     *            component of the coordinate.
-     * @param y
-     *            component of the coordinate.
-     */
-    private void checkCoordinate(int x, int y) {
-	if (x > this.width || x < 0 || y > this.height || y < 0)
-	    throw new IllegalArgumentException();
-    }
-
-    /**
-     * Prints the solution.
-     */
-    public void printSolution() {
-	for (int i = 0; i <= this.width; i++) {
-	    for (int j = 0; j <= this.height; j++) {
-		if (solution[i][j] == BARRIER)
-		    System.out.print("\t -1 \t");
-		else
-		    System.out.print("\t" + solution[i][j] + "\t");
-	    }
-	    System.out.println();
-	}
     }
 
     /**
@@ -139,6 +82,19 @@ public class CitySimple {
     }
 
     /**
+     * Performs a simple test to check if a coordinate is valid.
+     * 
+     * @param x
+     *            component of the coordinate.
+     * @param y
+     *            component of the coordinate.
+     */
+    private void checkCoordinate(int x, int y) {
+	if (x > this.width || x < 0 || y > this.height || y < 0)
+	    throw new IllegalArgumentException();
+    }
+
+    /**
      * Load the base cases. Execute always before start the computation of other
      * cases.
      */
@@ -156,5 +112,48 @@ public class CitySimple {
 	    else
 		solution[originCoordinate[0]][i] = BARRIER;
 	}
+    }
+
+    /**
+     * Prints the solution.
+     */
+    public void printSolution() {
+	for (int i = 0; i <= this.width; i++) {
+	    for (int j = 0; j <= this.height; j++) {
+		if (solution[i][j] == BARRIER)
+		    System.out.print("\t -1 \t");
+		else
+		    System.out.print("\t" + solution[i][j] + "\t");
+	    }
+	    System.out.println();
+	}
+    }
+
+    /**
+     * Sets the destination at the x / y coordinate.
+     * 
+     * @param x
+     *            coordinate of the destination.
+     * @param y
+     *            coordinate of the destination.
+     */
+    public void setDestination(int x, int y) {
+	checkCoordinate(x, y);
+	destinationCoordinate[0] = x;
+	destinationCoordinate[1] = y;
+    }
+
+    /**
+     * Sets the origin at the coordinate x and y.
+     * 
+     * @param x
+     *            coordinate of the origin.
+     * @param y
+     *            coordinate of the origin.
+     */
+    public void setOrigin(int x, int y) {
+	checkCoordinate(x, y);
+	originCoordinate[0] = x;
+	originCoordinate[1] = y;
     }
 }
