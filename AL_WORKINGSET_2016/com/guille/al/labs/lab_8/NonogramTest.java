@@ -45,7 +45,7 @@ public class NonogramTest {
 	System.out.println("Case 1 generates: " + nonogram.getCalls() + " calls. And takes " + (t2-t1) + " ms.");
     }
 
-    @Test
+    @Test @Ignore("Too long")
     public void case2Test() throws IOException {
 	Nonogram nonogram = Nonogram.loadData("case2.txt");
 	nonogram.print();
