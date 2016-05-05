@@ -92,5 +92,29 @@ public class NonogramTest {
 	nonogram.printSolution();
 	System.out.println("Case 5 generates: " + nonogram.getCalls() + " calls. And takes " + (t2-t1) + " ms.");
     }
+    
+    @Test
+    public void case10Test() throws IOException {
+	Nonogram nonogram = Nonogram.loadData("case10.txt");
+	nonogram.print();
+
+	long t1 = System.currentTimeMillis();
+	assertEquals(true, nonogram.calculate());
+	long t2 = System.currentTimeMillis();
+	nonogram.printSolution();
+	System.out.println("Case 10 generates: " + nonogram.getCalls() + " calls. And takes " + (t2-t1) + " ms.");
+    }
+    
+    @Test @Ignore("Takes to long")
+    public void case11Test() throws IOException {
+	Nonogram nonogram = Nonogram.loadData("case11.txt");
+	nonogram.print();
+
+	long t1 = System.currentTimeMillis();
+	assertEquals(true, nonogram.calculate());
+	long t2 = System.currentTimeMillis();
+	nonogram.printSolution();
+	System.out.println("Case 11 generates: " + nonogram.getCalls() + " calls. And takes " + (t2-t1) + " ms.");
+    }
 
 }

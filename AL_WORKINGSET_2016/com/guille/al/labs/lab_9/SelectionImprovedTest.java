@@ -4,7 +4,7 @@ import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
-public class TimeMeasure {
+public class SelectionImprovedTest {
     
     private long t1, t2, t3, t4;
     
@@ -29,5 +29,19 @@ public class TimeMeasure {
 	if((t4-t3) <= (t2-t1)) {
 	    fail("The B&B algorithm is not good enoght.");
 	}
+    }
+    
+    @Test
+    public void examTest1() {
+	SelectionImproved si = new SelectionImproved(20, 13, 91);
+	si.branchAndBound(si.getRootNode());
+	si.printSolutionTrace();
+    }
+    
+    @Test
+    public void examTest2() {
+	SelectionImproved si = new SelectionImproved(400, 9, 50);
+	si.branchAndBound(si.getRootNode());
+	si.printSolutionTrace();
     }
 }

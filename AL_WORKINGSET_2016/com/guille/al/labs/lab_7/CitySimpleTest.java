@@ -12,7 +12,7 @@ import org.junit.Test;
 /**
  * JUnit Test for RoadsInCity
  */
-public class RoadsInCityTest {
+public class CitySimpleTest {
 
     public static final String relativePath = "com/guille/al/files/in/lab_7/";
 

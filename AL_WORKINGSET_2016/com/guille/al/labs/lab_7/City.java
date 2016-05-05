@@ -84,8 +84,13 @@ public class City {
 	if(this.origin.compareTo(this.destination) == 0)
 	    return -1;
 	
-	if(current.compareTo(this.getDestination()) == 0)
+	if(this.origin.x < this.destination.getX())
+	    return -1;
+	
+	if(current.compareTo(this.getDestination()) == 0) {
 	    this.paths++;
+	    return this.paths;
+	}
 	
 	if(!Barriers.contains(up.getX(), up.getY()) && up.getY() <= this.destination.getY()) {
 	    calculateRecursive(up);
@@ -95,8 +100,7 @@ public class City {
 	    calculateRecursive(right);
 	}
 	
-	
-	if(this.paths > 0)
+	if(this.paths >= 0)
 	    return this.paths;
 	return  -1;
     }

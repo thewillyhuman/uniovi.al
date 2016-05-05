@@ -22,8 +22,9 @@ public class Coordinate implements Comparable<Coordinate>{
     public int compareTo(Coordinate o) {
 	if(o.getX() == this.x && o.getY() == this.y)
 	    return 0;
-	else if (o.getX() < this.x || o.getY() < this.y)
+	else if (this.getX() < o.getX() || this.getY() < o.getY())
 	    return -1;
+	
 	else return 1;
     }
 }
